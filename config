@@ -180,13 +180,13 @@ bar {
 }
 
 # Custom Application Key Bindings
-bindsym $super+t exec --no-startup-id xfce4-terminal --working-directory=$($conf/context_aware_dir.sh)
+bindsym $super+t exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)"
 # bindsym $super+e exec --no-startup-id thunar
-bindsym $super+e exec --no-startup-id nemo $($conf/context_aware_dir.sh)
-bindsym $super+s exec --no-startup-id subl3 -n $($conf/context_aware_dir.sh)
-bindsym $super+v exec --no-startup-id code $($conf/context_aware_dir.sh)
+bindsym $super+e exec --no-startup-id nemo "$($conf/context_aware_dir.sh)"
+bindsym $super+s exec --no-startup-id subl3 -n "$($conf/context_aware_dir.sh)"
+bindsym $super+v exec --no-startup-id code "$($conf/context_aware_dir.sh)"
 bindsym $super+w exec --no-startup-id google-chrome-stable
-bindsym $super+a exec --no-startup-id atom $($conf/context_aware_dir.sh)
+bindsym $super+a exec --no-startup-id atom "$($conf/context_aware_dir.sh)"
 bindsym $super+c exec --no-startup-id clementine
 bindsym $super+i exec --no-startup-id xfce4-terminal -x ipython
 bindsym $super+o exec --no-startup-id libreoffice
