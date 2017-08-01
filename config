@@ -5,9 +5,8 @@ set $super Mod4
 set $ctrl Ctrl
 set $shift Shift
 
-set $disp1 DVI-I-2
-set $disp2 DVI-I-3
-
+set $disp1 DP1
+set $disp2 eDP1
 
 # General
 font pango:DejaVu Sans Mono 8
@@ -65,7 +64,7 @@ bar {
   output $disp1
   position bottom
   tray_output none
-  # tray_output $disp1
+  tray_output $disp1
   i3bar_command i3bar -t
   status_command i3blocks -c "$conf/i3blocks.bottom.left.conf"
   height 30
@@ -78,7 +77,7 @@ bar {
 bar {
   output $disp2
   position bottom
-  tray_output $disp2
+  # tray_output $disp2
   i3bar_command i3bar -t
   # status_command i3blocks -c "$conf/i3blocks.bottom.right.conf"
   height 30
@@ -187,10 +186,11 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $super+a exec --no-startup-id atom "$($conf/context_aware_dir.sh)"
 bindsym $super+b exec --no-startup-id baka-mplayer "$($conf/context_aware_dir.sh)"
 bindsym $super+c exec --no-startup-id clementine
+bindsym $super+d exec --no-startup-id bash -c "$conf/random_wallpaper.sh" &
 bindsym $super+e exec --no-startup-id nemo "$($conf/context_aware_dir.sh)"
 bindsym $super+f exec --no-startup-id rofi -show window -config "$conf/rofi.conf"
 bindsym $super+i exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)" -x ipython
-bindsym $super+m exec --no-startup-id bash -c "$conf/random_wallpaper.sh" &
+bindsym $super+m exec --no-startup-id bash -c "$conf/monitor.sh"
 bindsym $super+n exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)" -x jupyter-notebook
 bindsym $super+o exec --no-startup-id libreoffice
 bindsym $super+p exec --no-startup-id rofi -show run -config "$conf/rofi.conf"
@@ -206,19 +206,20 @@ bindsym --release Print exec --no-startup-id xfce4-screenshooter -fc
 bindsym $shift+$ctrl+Escape exec --no-startup-id ksysguard
 
 
-# Startupd
+# Startup
 
 ## Daemons
 exec_always --no-startup-id bash -c "$conf/autoname_workspaces.py" &
 exec --no-startup-id bash -c "$conf/random_wallpaper.sh" &
-exec --no-startup-id /usr/lib/kdeconnectd &
+# exec --no-startup-id /usr/lib/kdeconnectd &
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id compton --config "$conf/compton.conf" &
 exec --no-startup-id start-pulseaudio-x11 &
 exec --no-startup-id xfce4-clipman -d &
 
 ## Applications
-exec --no-startup-id clementine &
-exec --no-startup-id dropbox &
-exec --no-startup-id insync start &
+# exec --no-startup-id clementine &
+# exec --no-startup-id dropbox &
+# exec --no-startup-id insync start &
+exec --no-startup-id netctl-gui &
 exec --no-startup-id pasystray &
