@@ -1,5 +1,5 @@
 # Variables
-set $conf /home/u8sand/.config/i3
+set $conf "$HOME/.config/i3"
 set $alt Mod1
 set $super Mod4
 set $ctrl Ctrl
@@ -7,6 +7,7 @@ set $shift Shift
 
 set $disp1 DVI-I-2
 set $disp2 DVI-I-3
+
 
 # General
 font pango:DejaVu Sans Mono 8
@@ -16,22 +17,7 @@ workspace_auto_back_and_forth yes
 floating_modifier $super
 gaps inner 10
 gaps outer 5
-#smart_gaps on
 
-## Per Window Layouts
-for_window [window_type="dialog"] floating enable
-for_window [window_type="utility"] floating enable
-for_window [window_type="toolbar"] floating enable
-for_window [window_type="splash"] floating enable
-for_window [window_type="menu"] floating enable
-for_window [window_type="dropdown_menu"] floating enable
-for_window [window_type="popup_menu"] floating enable
-for_window [window_type="tooltip"] floating enable
-for_window [window_type="notification"] floating enable
-
-for_window [class="baka-mplayer"] floating enable
-for_window [class="mochi-player"] floating enable
-for_window [class="Transmission-gtk"] floating enable
 
 # Per workspace settings
 workspace 1 output $disp1
@@ -45,83 +31,6 @@ workspace 8 output $disp2
 workspace 9 output $disp1
 workspace 10 output $disp2
 
-# Key Bindings
-
-## General Key Bindings
-bindsym $super+z floating toggle
-bindsym $super+$shift+c reload
-bindsym $super+$shift+r restart
-bindsym $super+$shift+x exit
-# bindsym $super+l exec --no-startup-id i3lock -f
-bindsym $super+l exec --no-startup-id i3lock -c "#111111"
-bindsym $super+q kill
-bindsym $super+$shift+q exec --no-startup-id $conf/blocks/shutdown_menu -c
-
-## Focus Key Bindings
-bindsym $super+Left focus left
-bindsym $super+Down focus down
-bindsym $super+Up focus up
-bindsym $super+Right focus right
-
-bindsym $super+Home focus parent
-bindsym $super+End focus child
-
-bindsym $super+Tab workspace next
-bindsym $super+$shift+Tab workspace prev
-
-bindsym $super+1 workspace number 1
-bindsym $super+2 workspace number 2
-bindsym $super+3 workspace number 3
-bindsym $super+4 workspace number 4
-bindsym $super+5 workspace number 5
-bindsym $super+6 workspace number 6
-bindsym $super+7 workspace number 7
-bindsym $super+8 workspace number 8
-bindsym $super+9 workspace number 9
-bindsym $super+0 workspace number 10
-
-## Movement Key Bindings
-bindsym $super+$shift+Left move left
-bindsym $super+$shift+Down move down
-bindsym $super+$shift+Up move up
-bindsym $super+$shift+Right move right
-
-bindsym $super+$shift+1 move container to workspace number 1
-bindsym $super+$shift+2 move container to workspace number 2
-bindsym $super+$shift+3 move container to workspace number 3
-bindsym $super+$shift+4 move container to workspace number 4
-bindsym $super+$shift+5 move container to workspace number 5
-bindsym $super+$shift+6 move container to workspace number 6
-bindsym $super+$shift+7 move container to workspace number 7
-bindsym $super+$shift+8 move container to workspace number 8
-bindsym $super+$shift+9 move container to workspace number 9
-bindsym $super+$shift+0 move container to workspace number 10
-
-bindsym $alt+$super+Left exec --no-startup-id $conf/relative_workspace.sh -2
-bindsym $alt+$super+Right exec --no-startup-id $conf/relative_workspace.sh 2
-bindsym $alt+$super+Up move workspace to output right
-bindsym $alt+$super+Down move workspace to output left
-
-## Layout Key Bindings
-bindsym $ctrl+$super+Return fullscreen toggle
-bindsym $ctrl+$super+~ layout stacked
-bindsym $ctrl+$super+Tab layout tabbed
-bindsym $ctrl+$super+Up layout splitv
-bindsym $ctrl+$super+Left layout splith
-bindsym $ctrl+$super+Right split h
-bindsym $ctrl+$super+Down split v
-
-## Mouse Bindings
-bindsym --whole-window $super+button2 floating toggle
-bindsym --whole-window $super+$shift+button2 sticky toggle
-
-## Media Keys
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 2%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 2%-
-bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Gui
 bar {
@@ -179,48 +88,137 @@ bar {
   }
 }
 
-# Custom Application Key Bindings
-bindsym $super+t exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)"
-# bindsym $super+e exec --no-startup-id thunar
-bindsym $super+e exec --no-startup-id nemo "$($conf/context_aware_dir.sh)"
-bindsym $super+s exec --no-startup-id subl3 -n "$($conf/context_aware_dir.sh)"
-bindsym $super+v exec --no-startup-id code "$($conf/context_aware_dir.sh)"
-bindsym $super+w exec --no-startup-id google-chrome-stable
+
+# Per Window Layouts
+for_window [window_type="dialog"] floating enable
+for_window [window_type="utility"] floating enable
+for_window [window_type="toolbar"] floating enable
+for_window [window_type="splash"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_type="dropdown_menu"] floating enable
+for_window [window_type="popup_menu"] floating enable
+for_window [window_type="tooltip"] floating enable
+for_window [window_type="notification"] floating enable
+
+## Custom Window Layouts
+for_window [class="baka-mplayer"] floating enable
+for_window [class="mochi-player"] floating enable
+for_window [class="Transmission-gtk"] floating enable
+
+
+# Key Bindings
+
+## General Key Bindings
+bindsym $super+l exec --no-startup-id i3lock -c "#111111"
+bindsym $super+q kill
+bindsym $super+z floating toggle
+bindsym $super+$shift+c reload
+bindsym $super+$shift+q exec --no-startup-id bash -c "$conf/blocks/shutdown_menu" -c
+bindsym $super+$shift+r restart
+bindsym $super+$shift+x exit
+
+## Mouse Bindings
+bindsym --whole-window $super+button2 floating toggle
+bindsym --whole-window $super+$shift+button2 sticky toggle
+
+## Focus Key Bindings
+bindsym $super+Up focus up
+bindsym $super+Down focus down
+bindsym $super+Left focus left
+bindsym $super+Right focus right
+
+bindsym $super+Home focus parent
+bindsym $super+End focus child
+
+bindsym $super+Tab workspace next
+bindsym $super+$shift+Tab workspace prev
+
+bindsym $super+1 workspace number 1
+bindsym $super+2 workspace number 2
+bindsym $super+3 workspace number 3
+bindsym $super+4 workspace number 4
+bindsym $super+5 workspace number 5
+bindsym $super+6 workspace number 6
+bindsym $super+7 workspace number 7
+bindsym $super+8 workspace number 8
+bindsym $super+9 workspace number 9
+bindsym $super+0 workspace number 10
+
+## Movement Key Bindings
+bindsym $super+$shift+Up move up
+bindsym $super+$shift+Down move down
+bindsym $super+$shift+Left move left
+bindsym $super+$shift+Right move right
+
+bindsym $super+$shift+1 move container to workspace number 1
+bindsym $super+$shift+2 move container to workspace number 2
+bindsym $super+$shift+3 move container to workspace number 3
+bindsym $super+$shift+4 move container to workspace number 4
+bindsym $super+$shift+5 move container to workspace number 5
+bindsym $super+$shift+6 move container to workspace number 6
+bindsym $super+$shift+7 move container to workspace number 7
+bindsym $super+$shift+8 move container to workspace number 8
+bindsym $super+$shift+9 move container to workspace number 9
+bindsym $super+$shift+0 move container to workspace number 10
+
+bindsym $alt+$super+Left exec --no-startup-id bash -c "$conf/relative_workspace.sh" -2
+bindsym $alt+$super+Right exec --no-startup-id bash -c "$conf/relative_workspace.sh" 2
+bindsym $alt+$super+Up move workspace to output right
+bindsym $alt+$super+Down move workspace to output left
+
+## Layout Key Bindings
+bindsym $ctrl+$super+Return fullscreen toggle
+bindsym $ctrl+$super+~ layout stacked
+bindsym $ctrl+$super+Tab layout tabbed
+bindsym $ctrl+$super+Up layout splitv
+bindsym $ctrl+$super+Down split v
+bindsym $ctrl+$super+Left layout splith
+bindsym $ctrl+$super+Right split h
+
+## Media Keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 2%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 2%-
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+## Custom Application Key Bindings
 bindsym $super+a exec --no-startup-id atom "$($conf/context_aware_dir.sh)"
+bindsym $super+b exec --no-startup-id baka-mplayer "$($conf/context_aware_dir.sh)"
 bindsym $super+c exec --no-startup-id clementine
-bindsym $super+i exec --no-startup-id xfce4-terminal -x ipython
-bindsym $super+o exec --no-startup-id libreoffice
-bindsym $shift+$ctrl+Escape exec --no-startup-id ksysguard
-# bindsym $super+r exec --no-startup-id xfce4-appfinder
-#bindsym $super+r exec --no-startup-id xfce4-popup-whiskermenu
-bindsym $super+r exec --no-startup-id rofi -show drun -config "$conf/rofi.conf"
-#bindsym $super+p exec --no-startup-id i3-dmenu-desktop
-bindsym $super+p exec --no-startup-id rofi -show run -config "$conf/rofi.conf"
-#bindsym $super+f exec --no-startup-id quickswitch.py
+bindsym $super+e exec --no-startup-id nemo "$($conf/context_aware_dir.sh)"
 bindsym $super+f exec --no-startup-id rofi -show window -config "$conf/rofi.conf"
-bindsym --release Print exec --no-startup-id xfce4-screenshooter -fc
+bindsym $super+i exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)" -x ipython
+bindsym $super+m exec --no-startup-id bash -c "$conf/random_wallpaper.sh" &
+bindsym $super+n exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)" -x jupyter-notebook
+bindsym $super+o exec --no-startup-id libreoffice
+bindsym $super+p exec --no-startup-id rofi -show run -config "$conf/rofi.conf"
+bindsym $super+r exec --no-startup-id rofi -show drun -config "$conf/rofi.conf"
+bindsym $super+s exec --no-startup-id subl3 -n "$($conf/context_aware_dir.sh)"
+bindsym $super+t exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)"
+bindsym $super+v exec --no-startup-id code -n "$($conf/context_aware_dir.sh)"
+bindsym $super+w exec --no-startup-id google-chrome-stable
+bindsym $ctrl+$super+x exec --no-startup-id bash -c "$conf/rm_wallpaper.sh" &
 bindsym --release $ctrl+Print exec --no-startup-id xfce4-screenshooter -wc
 bindsym --release $shift+Print exec --no-startup-id xfce4-screenshooter -rc
-bindsym $super+m exec --no-startup-id $conf/random_wallpaper.sh &
-#bindsym $super+$ctrl+d exec --no-startup-id $conf/rm_wallpaper.sh 3 &
-#bindsym $super+$alt+d exec --no-startup-id $conf/rm_wallpaper.sh 4 &
+bindsym --release Print exec --no-startup-id xfce4-screenshooter -fc
+bindsym $shift+$ctrl+Escape exec --no-startup-id ksysguard
 
-# Startup
+
+# Startupd
 
 ## Daemons
-exec_always --no-startup-id $conf/autoname_workspaces.py &
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-# crontab: */2 * * * *  DISPLAY=:0.0 "$conf/random_wallpaper.sh" &
-exec --no-startup-id $conf/random_wallpaper.sh &
-exec --no-startup-id compton --config "$conf/compton.conf" &
-# exec --no-startup-id conky &
-#exec --no-startup-id xfce4-panel -d &
-exec --no-startup-id xfce4-clipman -d &
-exec --no-startup-id start-pulseaudio-x11 &
+exec_always --no-startup-id bash -c "$conf/autoname_workspaces.py" &
+exec --no-startup-id bash -c "$conf/random_wallpaper.sh" &
 exec --no-startup-id /usr/lib/kdeconnectd &
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id compton --config "$conf/compton.conf" &
+exec --no-startup-id start-pulseaudio-x11 &
+exec --no-startup-id xfce4-clipman -d &
 
 ## Applications
-exec --no-startup-id pasystray &
+exec --no-startup-id clementine &
 exec --no-startup-id dropbox &
 exec --no-startup-id insync start &
-exec --no-startup-id clementine &
+exec --no-startup-id pasystray &

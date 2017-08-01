@@ -1,7 +1,7 @@
 #!/bin/bash
 # Move container and focus to a relative workspace
 
-conf=/home/u8sand/.config/i3
+conf="$HOME/.config/i3"
 rel=$1
 cws=$("$conf/current_workspace.sh")
 ws=$(expr $cws + $rel)
