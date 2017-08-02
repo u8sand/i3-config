@@ -216,6 +216,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id compton --config "$conf/compton.conf" &
 exec --no-startup-id start-pulseaudio-x11 &
 exec --no-startup-id xfce4-clipman -d &
+exec --no-startup-id xfce4-power-manager &
 
 ## Applications
 # exec --no-startup-id clementine &
