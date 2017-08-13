@@ -199,6 +199,7 @@ bindsym $super+s exec --no-startup-id subl3 -n "$($conf/context_aware_dir.sh)"
 bindsym $super+t exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)"
 bindsym $super+v exec --no-startup-id code -n "$($conf/context_aware_dir.sh)"
 bindsym $super+w exec --no-startup-id google-chrome-stable
+bindsym $ctrl+$alt+v exec --no-startup-id bash -c "$conf/sudo_paste.sh" &
 bindsym $ctrl+$super+x exec --no-startup-id bash -c "$conf/rm_wallpaper.sh" &
 bindsym --release $ctrl+Print exec --no-startup-id xfce4-screenshooter -wc
 bindsym --release $shift+Print exec --no-startup-id xfce4-screenshooter -rc
@@ -222,3 +223,4 @@ exec --no-startup-id clementine &
 exec --no-startup-id dropbox &
 exec --no-startup-id insync start &
 exec --no-startup-id pasystray &
+exec --no-startup-id deluge &
