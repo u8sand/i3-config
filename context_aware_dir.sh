@@ -14,7 +14,7 @@
 #  Edit -> Preferences -> Dynamically-set title: Replaces initial title
 
 eval "$(pyenv init -)"
-pyenv shell 3.5.1
+pyenv shell 3.6.1
 
 i3-msg -t get_tree | python -c "
 import re, sys, json, jsonpath

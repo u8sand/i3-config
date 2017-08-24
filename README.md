@@ -3,7 +3,7 @@
 My awesome i3 configuration.
 Most things are tied into my directory tree but I've tried to utilize variables when possible (usually defined at the top as `$conf`).
 
-Dependencies:
+## Dependencies
 
 Though there are many, many of these things you probably already have installed and don't really make sense without them (e.g. volume w/out alsa or battery w/out acpi)
 
@@ -26,10 +26,13 @@ Though there are many, many of these things you probably already have installed 
 - trash-cli (rm_wallpaper)
 - xclip (sudo_paste)
 - xf86-input-wacom (wacom, xsetwacom_my_preferences)
+- xfce4-settings (xfsettingsd)
+- xfconf (cycle_mouse)
 - xmacro (sudo_paste)
 - xorg-xprop (autoname_worspaces)
 
-Credit where it is due:
+
+## Credit where it is due
 
 - `autoname_workspaces.py` and `util.py` was borrowed / modified and extended
 - `/blocks` code I've borrowed / modified

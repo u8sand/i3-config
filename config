@@ -205,16 +205,18 @@ bindsym --release $ctrl+Print exec --no-startup-id xfce4-screenshooter -wc
 bindsym --release $shift+Print exec --no-startup-id xfce4-screenshooter -rc
 bindsym --release Print exec --no-startup-id xfce4-screenshooter -fc
 bindsym $shift+$ctrl+Escape exec --no-startup-id ksysguard
-
+bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/cycle_mousekeys.sh" &
 
 # Startupd
+exec --no-startup-id start-pulseaudio-x11 &
 
 ## Daemons
 exec_always --no-startup-id bash -c "$conf/autoname_workspaces.py" &
+exec_always --no-startup-id xfsettingsd --replace &
 exec --no-startup-id bash -c "$conf/random_wallpaper.sh" &
+exec --no-startup-id compton --config "$conf/compton.conf" &
 exec --no-startup-id /usr/lib/kdeconnectd &
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id compton --config "$conf/compton.conf" &
 exec --no-startup-id start-pulseaudio-x11 &
 exec --no-startup-id xfce4-clipman -d &
 
