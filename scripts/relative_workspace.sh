@@ -6,4 +6,3 @@ rel=$1
 cws="$($conf/scripts/current_workspace.sh)"
 ws=$(expr $cws + $rel)
 i3-msg -t command "move container to workspace $ws; workspace $ws"
-echo $conf >> $HOME/test
