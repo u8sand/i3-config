@@ -1,5 +1,5 @@
 {
-  "_default": "window-maximize",
+  "": "window-maximize",
   "acroread": "file-pdf-o",
   "atom": "code",
   "baka-mplayer": "file-video-o",

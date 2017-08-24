@@ -94,7 +94,7 @@ def xprop(win_id, property):
 WINDOW_ICONS = json.load(open('../settings/icons.json', 'r'))
 
 # This icon is used for any application not in the list above
-DEFAULT_ICON = WINDOW_ICONS['_default']
+DEFAULT_ICON = WINDOW_ICONS['']
 
 
 def icon_for_window(window):
