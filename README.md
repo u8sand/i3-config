@@ -25,7 +25,7 @@ Though there are many, many of these things you probably already have installed 
 - sysstat (blocks/cpu_usage)
 - trash-cli (rm_wallpaper)
 - xclip (sudo_paste)
-- xf86-input-wacom (wacom, xsetwacom_my_preferences)
+- xf86-input-wacom (wacom)
 - xfce4-settings (xfsettingsd)
 - xfconf (cycle_mouse)
 - xmacro (sudo_paste)
@@ -34,7 +34,7 @@ Though there are many, many of these things you probably already have installed 
 
 ## Credit where it is due
 
-- `autoname_workspaces.py` and `util.py` was borrowed / modified and extended
+- `autoname_workspaces.py` was borrowed / modified and extended
 - `/blocks` code I've borrowed / modified
 - `compton.conf` was borrowed / modified
 - `rofi.conf` was borrowed

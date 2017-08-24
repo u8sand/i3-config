@@ -39,7 +39,7 @@ bar {
   workspace_buttons no
   tray_output none
   i3bar_command i3bar -t
-  status_command i3blocks -c "$conf/i3blocks.top.left.conf"
+  status_command i3blocks -c "$conf/settings/i3blocks.top.left.conf"
   height 20
   colors {
     background #00000088
@@ -53,7 +53,7 @@ bar {
   tray_output none
   workspace_buttons no
   i3bar_command i3bar -t
-  status_command i3blocks -c "$conf/i3blocks.top.right.conf"
+  status_command i3blocks -c "$conf/settings/i3blocks.top.right.conf"
   height 20
   colors {
     background #00000088
@@ -67,7 +67,7 @@ bar {
   tray_output none
   # tray_output $disp1
   i3bar_command i3bar -t
-  status_command i3blocks -c "$conf/i3blocks.bottom.left.conf"
+  status_command i3blocks -c "$conf/settings/i3blocks.bottom.left.conf"
   height 30
   colors {
     background #00000088
@@ -80,7 +80,7 @@ bar {
   position bottom
   tray_output $disp2
   i3bar_command i3bar -t
-  # status_command i3blocks -c "$conf/i3blocks.bottom.right.conf"
+  # status_command i3blocks -c "$conf/settings/i3blocks.bottom.right.conf"
   height 30
   colors {
     background #00000088
@@ -161,8 +161,8 @@ bindsym $super+$shift+8 move container to workspace number 8
 bindsym $super+$shift+9 move container to workspace number 9
 bindsym $super+$shift+0 move container to workspace number 10
 
-bindsym $alt+$super+Left exec --no-startup-id bash -c "$conf/relative_workspace.sh" -2
-bindsym $alt+$super+Right exec --no-startup-id bash -c "$conf/relative_workspace.sh" 2
+bindsym $alt+$super+Left exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh -2"
+bindsym $alt+$super+Right exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 2"
 bindsym $alt+$super+Up move workspace to output right
 bindsym $alt+$super+Down move workspace to output left
 
@@ -184,37 +184,39 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 ## Custom Application Key Bindings
-bindsym $super+a exec --no-startup-id atom "$($conf/context_aware_dir.sh)"
-bindsym $super+b exec --no-startup-id baka-mplayer "$($conf/context_aware_dir.sh)"
+bindsym $super+a exec --no-startup-id atom "$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+b exec --no-startup-id baka-mplayer "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+c exec --no-startup-id clementine
-bindsym $super+e exec --no-startup-id nemo "$($conf/context_aware_dir.sh)"
-bindsym $super+f exec --no-startup-id rofi -show window -config "$conf/rofi.conf"
-bindsym $super+i exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)" -x ipython
-bindsym $super+m exec --no-startup-id bash -c "$conf/random_wallpaper.sh" &
-bindsym $super+n exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)" -x jupyter-notebook
+bindsym $super+e exec --no-startup-id nemo "$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+f exec --no-startup-id rofi -show window -config "$conf/settings/rofi.conf"
+bindsym $super+i exec --no-startup-id xfce4-terminal --working-directory="$($conf/scripts/context_aware_dir.sh)" -x ipython
+bindsym $super+m exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
+bindsym $super+n exec --no-startup-id xfce4-terminal --working-directory="$($conf/scripts/context_aware_dir.sh)" -x jupyter-notebook
 bindsym $super+o exec --no-startup-id libreoffice
-bindsym $super+p exec --no-startup-id rofi -show run -config "$conf/rofi.conf"
-bindsym $super+r exec --no-startup-id rofi -show drun -config "$conf/rofi.conf"
-bindsym $super+s exec --no-startup-id subl3 -n "$($conf/context_aware_dir.sh)"
-bindsym $super+t exec --no-startup-id xfce4-terminal --working-directory="$($conf/context_aware_dir.sh)"
-bindsym $super+v exec --no-startup-id code -n "$($conf/context_aware_dir.sh)"
+bindsym $super+p exec --no-startup-id rofi -show run -config "$conf/settings/rofi.conf"
+bindsym $super+r exec --no-startup-id rofi -show drun -config "$conf/settings/rofi.conf"
+bindsym $super+s exec --no-startup-id subl3 -n "$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+t exec --no-startup-id xfce4-terminal --working-directory="$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+v exec --no-startup-id code -n "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+w exec --no-startup-id google-chrome-stable
-bindsym $ctrl+$alt+v exec --no-startup-id bash -c "$conf/sudo_paste.sh" &
-bindsym $ctrl+$super+x exec --no-startup-id bash -c "$conf/rm_wallpaper.sh" &
+bindsym $ctrl+$alt+v exec --no-startup-id bash -c "$conf/scripts/sudo_paste.sh" &
+bindsym $ctrl+$super+x exec --no-startup-id bash -c "$conf/scripts/rm_wallpaper.sh" &
 bindsym --release $ctrl+Print exec --no-startup-id xfce4-screenshooter -wc
 bindsym --release $shift+Print exec --no-startup-id xfce4-screenshooter -rc
 bindsym --release Print exec --no-startup-id xfce4-screenshooter -fc
 bindsym $shift+$ctrl+Escape exec --no-startup-id ksysguard
-bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/cycle_mousekeys.sh" &
+bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/scripts/cycle_mousekeys.sh" &
 
 # Startupd
 exec --no-startup-id start-pulseaudio-x11 &
 
-## Daemons
-exec_always --no-startup-id bash -c "$conf/autoname_workspaces.py" &
+## Restartable Daemons
+exec_always --no-startup-id bash -c "$conf/scripts/setup_autoname.sh" &
 exec_always --no-startup-id xfsettingsd --replace &
-exec --no-startup-id bash -c "$conf/random_wallpaper.sh" &
-exec --no-startup-id compton --config "$conf/compton.conf" &
+
+## Persistant Deamons
+exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
+exec --no-startup-id compton --config "$conf/settings/compton.conf" &
 exec --no-startup-id /usr/lib/kdeconnectd &
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id start-pulseaudio-x11 &
