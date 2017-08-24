@@ -28,12 +28,58 @@
 #   bindsym $mod+1 workspace number 1
 
 import i3ipc
+import json
 import logging
+import re
 import signal
 import sys
 import fontawesome as fa
+import subprocess as proc
 
-from util import *
+
+def focused_workspace(i3):
+    return [w for w in i3.get_workspaces() if w.focused][0]
+
+
+# Takes a workspace 'name' from i3 and splits it into three parts:
+# * 'num'
+# * 'shortname' - the workspace's name, assumed to have no spaces
+# * 'icons' - the string that comes after the
+# Any field that's missing will be None in the returned dict
+def parse_workspace_name(name):
+    return re.match('(?P<num>\d+):?(?P<shortname>\w+)? ?(?P<icons>.+)?',
+                    name).groupdict()
+
+
+# Given a dictionary with 'num', 'shortname', 'icons', returns the formatted name
+# by concatenating them together.
+def construct_workspace_name(parts):
+    new_name = str(parts['num'])
+    if parts['shortname'] or parts['icons']:
+        new_name += ':'
+
+        if parts['shortname']:
+            new_name += parts['shortname']
+
+        if parts['icons']:
+            new_name += ' ' + parts['icons']
+
+    return new_name
+
+
+# Return an array of values for the X property on the given window.
+# Requires xorg-xprop to be installed.
+def xprop(win_id, property):
+    try:
+        prop = proc.check_output(
+            ['xprop', '-id', str(win_id), property],
+            stderr=proc.DEVNULL)
+        prop = prop.decode('utf-8')
+        return re.findall('"([^"]+)"', prop)
+    except proc.CalledProcessError as e:
+        logging.warn("Unable to get property for window '%d'" % win_id)
+        return None
+
 
 # Add icons here for common programs you use.  The keys are the X window class
 # (WM_CLASS) names (lower-cased) and the icons can be any text you want to
@@ -45,43 +91,10 @@ from util import *
 # If you're not sure what the WM_CLASS is for your application, you can use
 # xprop (https://linux.die.net/man/1/xprop). Run `xprop | grep WM_CLASS`
 # then click on the application you want to inspect.
-WINDOW_ICONS = {
-    'acroread': fa.icons['file-pdf-o'],
-    'atom': fa.icons['code'],
-    'baka-mplayer': fa.icons['file-video-o'],
-    'blender': fa.icons['cube'],
-    'brackets': fa.icons['code'],
-    'clementine': fa.icons['music'],
-    'code': fa.icons['code'],
-    'cura': fa.icons['cube'],
-    'deluge': fa.icons['download'],
-    'feh': fa.icons['picture-o'],
-    'file-roller': fa.icons['file-archive-o'],
-    'firefox': fa.icons['firefox'],
-    'gimp-2.8': fa.icons['file-image-o'],
-    'google-chrome': fa.icons['chrome'],
-    'gpick': fa.icons['eyedropper'],
-    'haroopad': fa.icons['code'],
-    'inkscape': fa.icons['file-image-o'],
-    'krita': fa.icons['file-image-o'],
-    'libreoffice': fa.icons['file-text-o'],
-    'masterpdfeditor4': fa.icons['file-pdf-o'],
-    'navigator': fa.icons['firefox'],
-    'nemo': fa.icons['files-o'],
-    'okular': fa.icons['file-pdf-o'],
-    'pavucontrol': fa.icons['volume-up'],
-    'qtcreator': fa.icons['codepen'],
-    'ristretto': fa.icons['picture-o'],
-    'subl': fa.icons['file-code-o'],
-    'subl3': fa.icons['file-code-o'],
-    'thunar': fa.icons['files-o'],
-    'transmission-gtk': fa.icons['download'],
-    'virtualbox': fa.icons['desktop'],
-    'xfce4-terminal': fa.icons['terminal'],
-}
+WINDOW_ICONS = json.load(open('../settings/icons.json', 'r'))
 
 # This icon is used for any application not in the list above
-DEFAULT_ICON = fa.icons['window-maximize']
+DEFAULT_ICON = WINDOW_ICONS['']
 
 
 def icon_for_window(window):
@@ -91,9 +104,9 @@ def icon_for_window(window):
         for cls in classes:
             cls = cls.lower()  # case-insensitive matching
             if cls in WINDOW_ICONS:
-                return WINDOW_ICONS[cls]
+                return fa.icons[WINDOW_ICONS[cls]]
     logging.info('No icon available for window with classes: %s' % str(classes))
-    return DEFAULT_ICON
+    return fa.icons[DEFAULT_ICON]
 
 
 # renames all workspaces based on the windows present

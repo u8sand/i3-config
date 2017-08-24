@@ -3,9 +3,40 @@
 My awesome i3 configuration.
 Most things are tied into my directory tree but I've tried to utilize variables when possible (usually defined at the top as `$conf`).
 
-Credit where it is due:
+## Dependencies
 
-- `autoname_workspaces.py` and `util.py` was borrowed / modified and extended
+Though there are many, many of these things you probably already have installed and don't really make sense without them (e.g. volume w/out alsa or battery w/out acpi)
+
+- acpi (blocks/battery)
+- alsa-util (blocks/volume, mediakeys)
+- compton (window opacity / shadow)
+- feh (random_wallpaper)
+- i3 (naturally)
+  - i3-gaps
+  - i3blocks
+  - i3lock
+- lm_sensors (blocks/temperature)
+- playerctl (blocks/media_player, mediakeys)
+- python3 (i3-msg json parsing)
+  - jsonpath (context_aware_dir)
+  - i3ipc  (autoname_worspaces)
+  - fontawesome (autoname_worspaces)
+- rofi (shutdown_menu, run_menu)
+- sysstat (blocks/cpu_usage)
+- trash-cli (rm_wallpaper)
+- xclip (sudo_paste)
+- xf86-input-wacom (wacom)
+- xfce4-settings (xfsettingsd)
+- xfce4-power-manager (config)
+- xfconf (cycle_mouse)
+- xmacro (sudo_paste)
+- xorg-xprop (autoname_worspaces)
+- xorg-xrandr (monitor)
+
+
+## Credit where it is due
+
+- `autoname_workspaces.py` was borrowed / modified and extended
 - `/blocks` code I've borrowed / modified
 - `compton.conf` was borrowed / modified
 - `rofi.conf` was borrowed
