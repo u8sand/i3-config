@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-conf=$(cd $(dirname $0)/.. ; pwd -P)
+export conf=$(cd $(dirname $0)/.. ; pwd -P)
+source "$conf/settings/env.sh"
 source "$conf/settings/wallpaper.sh"
 disp="$($conf/scripts/current_display.sh)"
 

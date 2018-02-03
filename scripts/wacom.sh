@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # https://bitbucket.org/denilsonsa/small_scripts/src/3380435f92646190f860b87f566a39d0e215034c/xsetwacom_my_preferences.sh?at=default&fileviewer=file-view-default
 # CONFIGURATION
 

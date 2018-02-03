@@ -30,12 +30,12 @@
 import i3ipc
 import json
 import logging
+import os
 import re
 import signal
 import sys
 import fontawesome as fa
 import subprocess as proc
-
 
 def focused_workspace(i3):
     return [w for w in i3.get_workspaces() if w.focused][0]
@@ -91,11 +91,10 @@ def xprop(win_id, property):
 # If you're not sure what the WM_CLASS is for your application, you can use
 # xprop (https://linux.die.net/man/1/xprop). Run `xprop | grep WM_CLASS`
 # then click on the application you want to inspect.
-WINDOW_ICONS = json.load(open('../settings/icons.json', 'r'))
+WINDOW_ICONS = json.load(open('%s/settings/icons.json' % (os.environ.get('conf', '.')), 'r'))
 
 # This icon is used for any application not in the list above
 DEFAULT_ICON = WINDOW_ICONS['']
-
 
 def icon_for_window(window):
     # Try all window classes and use the first one we have an icon for

@@ -1,34 +1,35 @@
-#!/bin/bash
-# This command is magical and awesome, basically on a per-application basis we extract the current
-#  working directory for context-aware commands.
-# These depend on, in many cases, the title which may need to be adjusted accordingly for each app.
-# visual-studio-code:
-#  User Settings: "window.title": "${dirty}${activeEditorLong} - ${folderName} - ${appName}",
-# nemo:
-#  Edit -> Preferences -> Display -> Check Show the full path in the title bar and tab bars
-# sublime-text-3:
-#  User settings: "show_full_path": true,
-# xfce4-terminal:
-#  echo 'precmd() { print -Pn "\e]0;$PWD\a" }' >> ~/.zshrc
-#  echo 'DISABLE_AUTO_TITLE="false"' >> ~/.zshrc
-#  Edit -> Preferences -> Dynamically-set title: Replaces initial title
+#!/usr/bin/env bash
+# Basically we look for a valid path in the title of the current application
+#  to become the working directory for a command call.
+# In order for it to work, the *full* path must naturally appear in the title
+#  of your application, configure your applications accordingly.
+# NOTE: this won't work for directories with spaces in their name though with
+#  some extension to the regular expression it probably could be made to work
+#  but since I never put spaces in my paths, I don't feel the need to do it.
 
-eval "$(pyenv init -)"
-pyenv shell 3.6.1
+export conf=$(cd $(dirname $0)/.. ; pwd -P)
+source "$conf/settings/env.sh"
 
-i3-msg -t get_tree | python -c "
-import re, sys, json, jsonpath
-def re_or(r, s, g, o=''):
-  m = re.match(r, s)
-  return m.group(g) if m else o
-print(
-  (lambda props: {
-    'code': lambda p: re_or(r'^(. )?(.*)/.* - .* - .+$', p['title'], 2).replace('~', '$HOME'),
-    'nemo': lambda p: re_or(r'^(.*) - (.+)$', p['title'], 2),
-    'subl3': lambda p: re_or(r'^(.*)/.* (. )?\(.*\) - .+$', p['title'], 1).replace('~', '$HOME'),
-    'xfce4-terminal': lambda p: p['title'],
-  }.get(props['instance'], '')(props))(
-    jsonpath.jsonpath(
-      json.load(sys.stdin),
-      '$..nodes[?(@.focused)].window_properties')[0]
-  ))"
+i3-msg -t get_tree | python3 -c "
+import os
+import re
+import sys
+import json
+import jsonpath
+
+props = jsonpath.jsonpath(
+  json.load(sys.stdin),
+  '$..nodes[?(@.focused)].window_properties',
+)[0]
+
+m = re.search(r'~?(/[^ \/]+)+', props['title'])
+ms = m.group(0)
+if ms:
+  ms = ms.replace('~', os.environ['HOME'])
+if os.path.isdir(ms):
+  print(ms)
+elif os.path.isfile(ms):
+  print(os.path.dirname(ms))
+else:
+  print('')
+"

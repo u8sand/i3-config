@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 conf=$(cd $(dirname $0)/.. ; pwd -P)
 export dir="$HOME/Pictures/Wallpapers"
