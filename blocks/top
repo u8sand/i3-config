@@ -20,7 +20,7 @@ fi
 OUT=$( \
   ps aux \
     | awk "NR>1{print \$${FIELD}, \$11}" \
-    | sort -rk1 \
+    | sort -grk1 \
     | uniq -uf1 \
     | head -n ${N_TOP} \
     | awk "{
