@@ -23,6 +23,8 @@ elif [[ "${DISPLAY}" = "used" ]]; then
   VALUE=$(echo "${SPACE_VARS}" | awk -F ' ' '{print $2}')
 elif [[ "${DISPLAY}" = "free" ]]; then
   VALUE=$(echo "${SPACE_VARS}" | awk -F ' ' '{print $3}')
+elif [[ "${DISPLAY}" = "ratio" ]]; then
+  VALUE=$(echo "${SPACE_VARS}" | awk -F ' ' '{print $2"/"$1" ("$4")"}')
 elif [[ "${DISPLAY}" = "perc" ]]; then
   VALUE="${PERC_SPACE}%"
 fi

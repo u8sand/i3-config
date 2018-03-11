@@ -1,7 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Move container and focus to a relative workspace
 
-conf=$(cd $(dirname $0)/.. ; pwd -P)
+export conf=$(cd $(dirname $0)/.. ; pwd -P)
+source "$conf/settings/env.sh"
+
 rel=$1
 cws="$($conf/scripts/current_workspace.sh)"
 ws=$(expr $cws + $rel)

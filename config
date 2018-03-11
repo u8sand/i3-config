@@ -9,7 +9,7 @@ set $disp1 DP1
 set $disp2 eDP1
 
 # General
-font pango:DejaVu Sans Mono 8
+font pango:RobotoMono Nerd Font 8
 focus_follows_mouse no
 mouse_warping none
 workspace_auto_back_and_forth yes
@@ -39,7 +39,7 @@ bar {
   tray_output none
   i3bar_command i3bar -t
   status_command i3blocks -c "$conf/settings/i3blocks.top.left.conf"
-  height 20
+  height 25
   colors {
     background #00000088
     statusline #ffffffff
@@ -53,7 +53,7 @@ bar {
   workspace_buttons no
   i3bar_command i3bar -t
   status_command i3blocks -c "$conf/settings/i3blocks.top.right.conf"
-  height 20
+  height 25
   colors {
     background #00000088
     statusline #ffffffff
@@ -189,14 +189,14 @@ bindsym $super+c exec --no-startup-id clementine
 bindsym $super+d exec --no-startup-id bash -c "$conf/scripts/monitor.sh"
 bindsym $super+e exec --no-startup-id nemo "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+f exec --no-startup-id rofi -show window -config "$conf/settings/rofi.conf"
-bindsym $super+i exec --no-startup-id xfce4-terminal --working-directory="$($conf/scripts/context_aware_dir.sh)" -x ipython
+bindsym $super+i exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)" -x ipython
 bindsym $super+m exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
-bindsym $super+n exec --no-startup-id xfce4-terminal --working-directory="$($conf/scripts/context_aware_dir.sh)" -x jupyter-notebook
+bindsym $super+n exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)" -x jupyter-notebook
 bindsym $super+o exec --no-startup-id libreoffice
 bindsym $super+p exec --no-startup-id rofi -show run -config "$conf/settings/rofi.conf"
 bindsym $super+r exec --no-startup-id rofi -show drun -config "$conf/settings/rofi.conf"
 bindsym $super+s exec --no-startup-id subl3 -n "$($conf/scripts/context_aware_dir.sh)"
-bindsym $super+t exec --no-startup-id xfce4-terminal --working-directory="$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+t exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+v exec --no-startup-id code -n "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+w exec --no-startup-id google-chrome-stable
 bindsym $ctrl+$alt+v exec --no-startup-id bash -c "$conf/scripts/sudo_paste.sh" &

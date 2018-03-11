@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+INSTANCE="${BLOCK_INSTANCE}"
+
+# Usage:
+#  pcpu;10;8  (top 10 cpu proc, 8 spaces max)
+#  pmem;5;8  (top 5 mem proc, 8 spaces max)
+
+FIELD=$(echo "${INSTANCE}" | awk -F ';' '{print $1}')
+N_TOP=$(echo "${INSTANCE}" | awk -F ';' '{print $2}')
+FIELD_MAX_WIDTH=$(echo "${INSTANCE}" | awk -F ';' '{print $3}')
+
+OUT=$( \
+  ps -eo ${FIELD},cmd --no-headers \
+    | awk "{
+    VAL=\$1;
+    PROC=\$2;
+    split(\$2, NAME_PART, \"/\");
+    NAME=NAME_PART[length(NAME_PART)];
+    PROCS[NAME] += VAL; // Accumulate percentage from common process names
+  } END {
+    // Sort by top users
+    SORT_COMMAND=\"sort -rgk1\"
+    for(PROC in PROCS) {
+      print PROCS[PROC], PROC |& SORT_COMMAND;
+    }
+    close(SORT_COMMAND, \"to\");
+    N_TOP = 0;
+    while (N_TOP < ${N_TOP} && ( SORT_COMMAND |& getline LINE) > 0) {
+      // Reparse lines
+      split(LINE, LINE_PART, \" \")
+      VAL=LINE_PART[1];
+      NAME=LINE_PART[2];
+
+      // Build color
+      RC=(VAL/100)*255;
+      GC=255-RC;
+      BC=0;
+
+      // Write info
+      printf(\" <span foreground=\\\"#%0.2x%0.2x%0.2x\\\">%6.2f</span> %-${FIELD_MAX_WIDTH}.${FIELD_MAX_WIDTH}s\", RC, GC, BC, VAL, NAME);
+      N_TOP += 1;
+    }
+    close(SORT_COMMAND);
+	}")
+
+echo "${OUT}"
+echo "${OUT}"
+echo ""
