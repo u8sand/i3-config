@@ -228,3 +228,6 @@ exec --no-startup-id dropbox &
 exec --no-startup-id insync start &
 exec --no-startup-id pasystray &
 exec --no-startup-id deluge &
+
+## Workspace
+exec --no-startup-id bash -c "$conf/scripts/load_layout.sh 1" &
