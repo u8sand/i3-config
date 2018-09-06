@@ -229,3 +229,6 @@ exec --no-startup-id xfce4-power-manager &
 # exec --no-startup-id insync start &
 exec --no-startup-id netctl-gui &
 exec --no-startup-id pasystray &
+
+## Workspace
+# exec --no-startup-id bash -c "$conf/scripts/load_layout.sh 1" &

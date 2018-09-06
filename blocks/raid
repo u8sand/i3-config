@@ -1,0 +1,41 @@
+#!/bin/bash
+
+INSTANCE="${BLOCK_INSTANCE}"
+URGENT_VALUE=1024
+
+STATUS=$(awk "/^${INSTANCE}/ {
+  capture = 1;
+}; /blocks/ {
+  if (capture == 1) {
+    printf \$NF;
+  }
+}; /check/ {
+  if (capture == 1) {
+    printf \" C[\"\$4\"]\";
+    capture = 0;
+  }
+}; /resync/ {
+  if (capture == 1) {
+    printf \" S[\"\$4\"]\";
+    capture = 0;
+  }
+}; END {
+  printf \"\n\";
+}" < /proc/mdstat)
+MISMATCH=$(cat /sys/block/${INSTANCE}/md/mismatch_cnt)
+
+if [[ "${MISMATCH}" -gt 0 ]]; then
+  VALUE="${STATUS} M[${MISMATCH}]"
+else
+  VALUE="${STATUS}"
+fi
+
+if [[ "${VALUE}" ]]; then
+  echo "${VALUE}"
+  echo "${VALUE}"
+  echo ""
+fi
+
+if [[ "${MISMATCH}" -gt "${URGENT_VALUE}" ]]; then
+  exit 33
+fi

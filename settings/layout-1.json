@@ -1,0 +1,39 @@
+{
+    "layout": "splitv",
+    "percent": 0.67,
+    "nodes": [
+        {
+            "name": "google-chrome-stable https://mail.google.com https://calendar.google.com",
+            "percent": 1,
+            "swallows": [
+               {
+                    "class": "^Google\\-chrome$"
+               }
+            ]
+        }
+    ]
+}
+{
+    "layout": "splitv",
+    "percent": 0.33,
+    "nodes": [
+        {
+            "name": "nemo",
+            "percent": 0.5,
+            "swallows": [
+               {
+                    "class": "^Nemo$"
+               }
+            ]
+        },
+        {
+            "name": "konsole",
+            "percent": 0.5,
+            "swallows": [
+               {
+                   "class": "^konsole$"
+               }
+            ]
+        }
+    ]
+}
