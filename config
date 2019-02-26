@@ -161,8 +161,8 @@ bindsym $super+$shift+0 move container to workspace number 10
 
 bindsym $alt+$super+Left exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh -2"
 bindsym $alt+$super+Right exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 2"
-bindsym $alt+$super+Up move workspace to output right
-bindsym $alt+$super+Down move workspace to output left
+bindsym $alt+$super+Up exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 1"
+bindsym $alt+$super+Down exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh -1"
 
 ## Layout Key Bindings
 bindsym $ctrl+$super+Return fullscreen toggle
