@@ -209,7 +209,7 @@ bindsym --release $shift+Print exec --no-startup-id xfce4-screenshooter -rc
 bindsym --release Print exec --no-startup-id xfce4-screenshooter -fc
 bindsym $shift+$ctrl+Escape exec --no-startup-id ksysguard
 bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/scripts/cycle_mousekeys.sh"
-bindsym $shift+$ctrl+grave exec --no-startup-id code -n "/home/u8sand/danieljbclarke@gmail.com/Notes"
+bindsym $super+grave exec --no-startup-id code -n "/home/u8sand/danieljbclarke@gmail.com/Notes"
 
 # Startupd
 exec --no-startup-id start-pulseaudio-x11 &
