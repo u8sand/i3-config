@@ -5,4 +5,4 @@ export conf=$(cd $(dirname $0)/.. ; pwd -P)
 source "$conf/settings/env.sh"
 source "$conf/settings/wallpaper.sh"
 
-find "$dir" -type f | shuf -n ${#disps[@]} | tee "$save_current" | xargs feh -rz --bg-fill
+find "$dir" -type f -name "*.jpg" | shuf -n "${#disps[@]}" | tee "$save_current" | xargs feh -rz --bg-fill

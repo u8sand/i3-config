@@ -5,18 +5,18 @@ set $super Mod4
 set $ctrl Ctrl
 set $shift Shift
 
-set $disp1 DVI-I-2
-set $disp2 DVI-I-3
+set $disp1 HDMI-0
+set $disp2 DP-5
 
 
 # General
-font pango:RobotoMono Nerd Font 8
+font pango:RobotoMono Nerd Font 11
 focus_follows_mouse no
 mouse_warping none
 workspace_auto_back_and_forth yes
 floating_modifier $super
-gaps inner 10
-gaps outer 5
+#gaps inner 10
+#gaps outer 5
 
 
 # Per workspace settings
@@ -38,9 +38,9 @@ bar {
   position top
   workspace_buttons no
   tray_output none
-  i3bar_command i3bar -t
+  i3bar_command i3bar
   status_command i3blocks -c "$conf/settings/i3blocks.top.left.conf"
-  height 25
+  #height 25
   colors {
     background #00000088
     statusline #ffffffff
@@ -52,9 +52,9 @@ bar {
   position top
   tray_output none
   workspace_buttons no
-  i3bar_command i3bar -t
+  i3bar_command i3bar
   status_command i3blocks -c "$conf/settings/i3blocks.top.right.conf"
-  height 25
+  #height 25
   colors {
     background #00000088
     statusline #ffffffff
@@ -66,9 +66,9 @@ bar {
   position bottom
   tray_output none
   # tray_output $disp1
-  i3bar_command i3bar -t
+  i3bar_command i3bar
   status_command i3blocks -c "$conf/settings/i3blocks.bottom.left.conf"
-  height 30
+  #height 30
   colors {
     background #00000088
     statusline #ffffffff
@@ -79,9 +79,9 @@ bar {
   output $disp2
   position bottom
   tray_output $disp2
-  i3bar_command i3bar -t
+  i3bar_command i3bar
   # status_command i3blocks -c "$conf/settings/i3blocks.bottom.right.conf"
-  height 30
+  #height 30
   colors {
     background #00000088
     statusline #ffffffff
@@ -108,7 +108,7 @@ for_window [class="insync.py"] floating enable
 # Key Bindings
 
 ## General Key Bindings
-bindsym $super+l exec --no-startup-id i3lock -c "#111111"
+bindsym $super+l exec --no-startup-id i3lock -t -c "#111111"
 bindsym $super+q kill
 bindsym $super+z floating toggle
 bindsym $ctrl+$super+c reload
@@ -199,49 +199,50 @@ bindsym $super+c exec --no-startup-id clementine
 bindsym $super+e exec --no-startup-id nemo "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+e exec --no-startup-id nemo
 bindsym $super+f exec --no-startup-id rofi -show window -config "$conf/settings/rofi.conf"
-bindsym $super+i exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)" -e jupyter console
+bindsym $super+i exec --no-startup-id gnome-terminal --working-directory="$($conf/scripts/context_aware_dir.sh)" jupyter console
 bindsym $super+m exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh"
-bindsym $super+n exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)" -e jupyter notebook
+bindsym $super+n exec --no-startup-id gnome-terminal --woring-directory="$($conf/scripts/context_aware_dir.sh)" jupyter notebook
 bindsym $super+o exec --no-startup-id libreoffice
 bindsym $super+p exec --no-startup-id rofi -show run -config "$conf/settings/rofi.conf"
 bindsym $super+r exec --no-startup-id rofi -show drun -config "$conf/settings/rofi.conf"
 bindsym $super+s exec --no-startup-id subl3 -n "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+s exec --no-startup-id subl3 -n
-bindsym $super+t exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)"
-bindsym $super+$shift+t exec --no-startup-id konsole
+bindsym $super+t exec --no-startup-id gnome-terminal --working-directory="$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+$shift+t exec --no-startup-id gnome-terminal
 bindsym $super+v exec --no-startup-id code -n "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+v exec --no-startup-id code -n
-bindsym $super+w exec --no-startup-id google-chrome-stable
+bindsym $super+w exec --no-startup-id chromium-browser
 bindsym $ctrl+$alt+v exec --no-startup-id bash -c "$conf/scripts/sudo_paste.sh"
 bindsym $super+$shift+x exec --no-startup-id bash -c "$conf/scripts/rm_wallpaper.sh"
-bindsym --release $ctrl+Print exec --no-startup-id xfce4-screenshooter -wc
-bindsym --release $shift+Print exec --no-startup-id xfce4-screenshooter -rc
-bindsym --release $alt+Print exec --no-startup-id xfce4-screenshooter -fc
-bindsym $shift+$ctrl+Escape exec --no-startup-id ksysguard
-bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/scripts/cycle_mousekeys.sh"
-bindsym $super+grave exec --no-startup-id code -n "/home/u8sand/danieljbclarke@gmail.com/Notes"
+bindsym --release $ctrl+Print exec --no-startup-id gnome-screenshot -wc
+bindsym --release $shift+Print exec --no-startup-id gnome-screenshot -ac
+bindsym --release $alt+Print exec --no-startup-id gnome-screenshot -fc
+bindsym $shift+$ctrl+Escape exec --no-startup-id gnome-system-monitor
+#bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/scripts/cycle_mousekeys.sh"
+bindsym $super+grave exec --no-startup-id code -n "/home/daniel/gdrive/Documents/notes"
 
 # Startupd
-exec --no-startup-id start-pulseaudio-x11 &
+#exec --no-startup-id start-pulseaudio-x11 &
 
 ## Restartable Daemons
 exec_always --no-startup-id bash -c "$conf/scripts/setup_autoname.sh" &
-exec_always --no-startup-id xfsettingsd --replace &
+#exec_always --no-startup-id xfsettingsd --replace &
 
 ## Persistant Deamons
+exec --no-startup-id XDG_CURRENT_DESKTOP=Gnome; gsd-xsettings &
 exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
 exec --no-startup-id compton --config "$conf/settings/compton.conf" &
-exec --no-startup-id /usr/lib/kdeconnectd &
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id start-pulseaudio-x11 &
-exec --no-startup-id xfce4-clipman -d &
+#exec --no-startup-id /usr/lib/kdeconnectd &
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#exec --no-startup-id start-pulseaudio-x11 &
+#exec --no-startup-id xfce4-clipman -d &
 
 ## Applications
-exec --no-startup-id clementine &
-exec --no-startup-id dropbox &
+#exec --no-startup-id clementine &
+#exec --no-startup-id dropbox &
 #exec --no-startup-id insync start &
-exec --no-startup-id pasystray &
-exec --no-startup-id deluge &
+#exec --no-startup-id pasystray &
+#exec --no-startup-id deluge &
 
 ## Workspace
 exec --no-startup-id bash -c "$conf/scripts/load_layout.sh 1" &
