@@ -34,6 +34,8 @@ OUT=$( \
 
       // Build color
       RC=(VAL/100)*255;
+      if (RC > 255) { RC = 255; }
+      else if (RC < 0) { RC = 0; }
       GC=255-RC;
       BC=0;
 
