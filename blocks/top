@@ -8,6 +8,7 @@ INSTANCE="${BLOCK_INSTANCE}"
 
 FIELD=$(echo "${INSTANCE}" | awk -F ';' '{print $1}')
 N_TOP=$(echo "${INSTANCE}" | awk -F ';' '{print $2}')
+N_CPU=$(lscpu | awk -F': +' '$1 == "CPU(s)" { print $2 }')
 FIELD_MAX_WIDTH=$(echo "${INSTANCE}" | awk -F ';' '{print $3}')
 
 OUT=$( \
@@ -29,9 +30,15 @@ OUT=$( \
     while (N_TOP < ${N_TOP} && ( SORT_COMMAND |& getline LINE) > 0) {
       // Reparse lines
       split(LINE, LINE_PART, \" \")
-      VAL=LINE_PART[1];
+      VAL_PARSED=LINE_PART[1];
       NAME=LINE_PART[2];
 
+      // Normalize percentage as necessary
+      if ("${FIELD}" == "pcpu") {
+        VAL=VAL_PARSED/${N_CPU};
+      } else {
+        VAL=VAL_PARSED;
+      }
       // Build color
       RC=(VAL/100)*255;
       if (RC > 255) { RC = 255; }
