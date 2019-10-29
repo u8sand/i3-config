@@ -216,7 +216,7 @@ bindsym $ctrl+$alt+v exec --no-startup-id bash -c "$conf/scripts/sudo_paste.sh"
 bindsym $super+$shift+x exec --no-startup-id bash -c "$conf/scripts/rm_wallpaper.sh"
 bindsym --release $ctrl+Print exec --no-startup-id gnome-screenshot -wc
 bindsym --release $shift+Print exec --no-startup-id gnome-screenshot -ac
-bindsym --release $alt+Print exec --no-startup-id gnome-screenshot -fc
+bindsym --release $alt+Print exec --no-startup-id gnome-screenshot -c
 bindsym $shift+$ctrl+Escape exec --no-startup-id gnome-system-monitor
 #bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/scripts/cycle_mousekeys.sh"
 bindsym $super+grave exec --no-startup-id code -n "/home/daniel/gdrive/Documents/notes"
@@ -235,12 +235,11 @@ exec --no-startup-id compton --config "$conf/settings/compton.conf" &
 #exec --no-startup-id /usr/lib/kdeconnectd &
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 #exec --no-startup-id start-pulseaudio-x11 &
-#exec --no-startup-id xfce4-clipman -d &
+exec --no-startup-id xfce4-clipman -d &
 
 ## Applications
-#exec --no-startup-id clementine &
 #exec --no-startup-id dropbox &
-#exec --no-startup-id insync start &
+exec --no-startup-id odrive-unofficial &
 #exec --no-startup-id pasystray &
 #exec --no-startup-id deluge &
 
