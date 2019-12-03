@@ -142,13 +142,13 @@ bindsym $super+$shift+Right move right
 
 bindsym $alt+$super+Left exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh -1"
 bindsym $alt+$super+Right exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 1"
-bindsym $alt+$super+Up exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh -2"
-bindsym $alt+$super+Down exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 2"
+bindsym $alt+$super+Down exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh -2"
+bindsym $alt+$super+Up exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 2"
 
 bindsym $alt+$super+$shift+Left exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh -1 true"
 bindsym $alt+$super+$shift+Right exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 1 true"
-bindsym $alt+$super+$shift+Up exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh -2 true"
-bindsym $alt+$super+$shift+Down exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 2 true"
+bindsym $alt+$super+$shift+Down exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh -2 true"
+bindsym $alt+$super+$shift+Up exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 2 true"
 
 ### Absolute
 
