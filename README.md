@@ -10,7 +10,7 @@ To see how it works, you can just try it; you can also check out the [tutorial](
 Though there are many, many of these things you probably already have installed and don't really make sense without them (e.g. volume w/out alsa or battery w/out acpi)
 
 - acpi (blocks/battery)
-- alsa-util (blocks/volume, mediakeys)
+- alsa-utils (blocks/volume, mediakeys)
 - compton (window opacity / shadow)
 - feh (random_wallpaper)
 - i3 (naturally)
@@ -33,6 +33,14 @@ Though there are many, many of these things you probably already have installed 
 - xmacro (sudo_paste)
 - xorg-xprop (autoname_worspaces)
 
+
+### Quick Install
+
+```bash
+# replace yay with your AUR/pacman wrapper, or just use pacman filtering out the aur packages
+yay -S - < arch.txt
+pip3 install --user -r requirements.txt
+```
 
 ## Credit where it is due
 
