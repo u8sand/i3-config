@@ -229,11 +229,12 @@ exec_always --no-startup-id bash -c "$conf/scripts/setup_autoname.sh" &
 #exec_always --no-startup-id xfsettingsd --replace &
 
 ## Persistant Deamons
-exec --no-startup-id XDG_CURRENT_DESKTOP=Gnome; gsd-xsettings &
+exec --no-startup-id XDG_CURRENT_DESKTOP=Gnome; /usr/lib/gnome-settings-daemon/gsd-xsettings &
 exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
 exec --no-startup-id compton --config "$conf/settings/compton.conf" &
 #exec --no-startup-id /usr/lib/kdeconnectd &
-#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+
 #exec --no-startup-id start-pulseaudio-x11 &
 exec --no-startup-id xfce4-clipman -d &
 
