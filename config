@@ -220,6 +220,7 @@ bindsym --release $alt+Print exec --no-startup-id gnome-screenshot -c
 bindsym $shift+$ctrl+Escape exec --no-startup-id gnome-system-monitor
 #bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/scripts/cycle_mousekeys.sh"
 bindsym $super+grave exec --no-startup-id code -n "/home/daniel/gdrive/Documents/notes"
+bindsym $super+$shift+grave exec --no-startup-id bash -c "$conf/scripts/create_note.sh"
 
 # Startupd
 #exec --no-startup-id start-pulseaudio-x11 &
