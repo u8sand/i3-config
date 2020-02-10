@@ -3,26 +3,38 @@
 INSTANCE="${BLOCK_INSTANCE}"
 URGENT_VALUE=1024
 
-STATUS=$(awk "/^${INSTANCE}/ {
+STATUS=$(awk "BEGIN {
+  capture = 0;
+}; /^${INSTANCE}/ {
   capture = 1;
 }; /blocks/ {
   if (capture == 1) {
-    printf \$NF;
+    down = 0;
+    for (i = index(\$NF, \"[\") + 1; i <= index(\$NF, \"]\") - 1; i++) {
+      if (substr(\$NF, i, 1) != \"U\") {
+        down += 1;
+      }
+    }
+    if (down > 0) {
+      printf \"! \";
+    }
+    printf \"S\"\$NF;
   }
 }; /check/ {
   if (capture == 1) {
     printf \" C[\"\$4\"]\";
-    capture = 0;
   }
 }; /resync/ {
   if (capture == 1) {
-    printf \" S[\"\$4\"]\";
-    capture = 0;
+    printf \" R[\"\$4\"]\";
   }
-}; END {
+}; /^$/ {
+  capture = 0;
+} END {
   printf \"\n\";
 }" < /proc/mdstat)
 MISMATCH=$(cat /sys/block/${INSTANCE}/md/mismatch_cnt)
+
 
 if [[ "${MISMATCH}" -gt 0 ]]; then
   VALUE="${STATUS} M[${MISMATCH}]"
@@ -31,9 +43,15 @@ else
 fi
 
 if [[ "${VALUE}" ]]; then
-  echo "${VALUE}"
-  echo "${VALUE}"
-  echo ""
+  echo " ${VALUE}"
+  echo " ${VALUE}"
+  if [[ "${STATUS}" =~ ^! ]]; then
+    echo "#FF0000"
+  elif [[ "${MISMATCH}" -gt 0 ]]; then
+    echo "#FFFC00"
+  else
+    echo ""
+  fi
 fi
 
 if [[ "${MISMATCH}" -gt "${URGENT_VALUE}" ]]; then
