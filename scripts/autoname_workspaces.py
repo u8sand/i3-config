@@ -102,7 +102,7 @@ def icon_for_window(window):
     if classes != None and len(classes) > 0:
         for cls in classes:
             cls = cls.lower()  # case-insensitive matching
-            if cls in WINDOW_ICONS:
+            if cls in WINDOW_ICONS and WINDOW_ICONS[cls] in fa.icons:
                 return fa.icons[WINDOW_ICONS[cls]]
     logging.info('No icon available for window with classes: %s' % str(classes))
     return fa.icons[DEFAULT_ICON]

@@ -232,7 +232,7 @@ exec_always --no-startup-id bash -c "$conf/scripts/setup_autoname.sh" &
 ## Persistant Deamons
 exec --no-startup-id XDG_CURRENT_DESKTOP=Gnome; /usr/lib/gnome-settings-daemon/gsd-xsettings &
 exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
-exec --no-startup-id compton --config "$conf/settings/compton.conf" &
+exec --no-startup-id picom --config "$conf/settings/picom.conf" &
 #exec --no-startup-id /usr/lib/kdeconnectd &
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 
