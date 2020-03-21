@@ -20,7 +20,7 @@ if [ ! -z "${CONTEXT}" ]; then
 
     echo "${_uri}" | grep -q '^sftp://'
     if [ "$?" -eq "0" ]; then
-      ssh -t "$(echo ${_uri} | cut -c7-)" "cd \"${_path}\" && $@"
+      ssh -t "$(echo ${_uri} | cut -c8-)" "cd \"${_path}\" && $@"
       exit $?
     fi
   fi
