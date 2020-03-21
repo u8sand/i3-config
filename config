@@ -5,9 +5,8 @@ set $super Mod4
 set $ctrl Ctrl
 set $shift Shift
 
-set $disp1 DVI-I-2
-set $disp2 DVI-I-3
-
+set $disp1 DP-5
+set $disp2 DP-1
 
 # General
 font pango:RobotoMono Nerd Font 8
@@ -241,7 +240,7 @@ exec --no-startup-id clementine &
 exec --no-startup-id dropbox &
 #exec --no-startup-id insync start &
 exec --no-startup-id pasystray &
-exec --no-startup-id deluge &
+exec --no-startup-id transmission-gtk &
 
 ## Workspace
 exec --no-startup-id bash -c "$conf/scripts/load_layout.sh 1" &

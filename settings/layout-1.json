@@ -3,7 +3,7 @@
     "percent": 0.67,
     "nodes": [
         {
-            "name": "google-chrome-stable https://mail.google.com https://calendar.google.com",
+            "name": "google-chrome-stable https://mail.google.com/mail/u/1/ https://calendar.google.com/calendar/b/1/r",
             "percent": 1,
             "swallows": [
                {
