@@ -1,5 +1,5 @@
 # Variables
-set $conf "$HOME/.config/i3"
+set $conf $HOME/.config/i3
 set $alt Mod1
 set $super Mod4
 set $ctrl Ctrl
@@ -199,15 +199,15 @@ bindsym $super+c exec --no-startup-id clementine
 bindsym $super+e exec --no-startup-id nemo "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+e exec --no-startup-id nemo
 bindsym $super+f exec --no-startup-id rofi -show window -config "$conf/settings/rofi.conf"
-bindsym $super+i exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)" -e jupyter console
+bindsym $super+i exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh jupyter console
 bindsym $super+m exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh"
-bindsym $super+n exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)" -e jupyter notebook
+bindsym $super+n exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh jupyter notebook
 bindsym $super+o exec --no-startup-id libreoffice
 bindsym $super+p exec --no-startup-id rofi -show run -config "$conf/settings/rofi.conf"
 bindsym $super+r exec --no-startup-id rofi -show drun -config "$conf/settings/rofi.conf"
 bindsym $super+s exec --no-startup-id subl3 -n "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+s exec --no-startup-id subl3 -n
-bindsym $super+t exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+t exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh "${SHELL}"
 bindsym $super+$shift+t exec --no-startup-id konsole
 bindsym $super+v exec --no-startup-id code -n "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+v exec --no-startup-id code -n

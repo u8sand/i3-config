@@ -4,6 +4,28 @@
 #  to become the working directory for a command call.
 # In order for it to work, the *full* path must naturally appear in the title
 #  of your application, configure your applications accordingly.
+#
+# We also detect URIs and can perform some specific protocol-aware context
+#  handling. See `with_context.sh` for more information.
+#  If you want to take advantage of this with your terminal you'll need the following in your .*rc
+# On both host and remote
+# bash:
+#   if [ -z "$SSH_CLIENT" ]; then
+#     export PROTO=""
+#   else
+#     export PROTO="ssh://$(whoami)@$(hostname)"
+#   fi
+#   PROMPT_COMMAND='echo -en "\033]0;${PROTO}$(pwd)\a"'
+# zsh:
+#   if [ -z "$SSH_TTY" ]; then
+#     export PROTO=""
+#   else
+#     export PROTO="ssh://$(whoami)@$(hostname)"
+#   fi
+#   precmd() {
+#     print -Pn "\e]0;${PROTO}${PWD}\a"
+#   }
+#
 # NOTE: this won't work for directories with spaces in their name though with
 #  some extension to the regular expression it probably could be made to work
 #  but since I never put spaces in my paths, I don't feel the need to do it.
@@ -33,10 +55,16 @@ props = jsonpath.jsonpath(
   '$..nodes[?(@.focused)]',
 )[0]
 
-m = re.search(r'~?(/[^ \/]+)+', props['window_properties']['title'])
-ms = m.group(0) if m else None
-if ms:
-  ms = ms.replace('~', os.environ['HOME'])
+m = re.search(r'(?P<prefix>(?P<uri>[^ :]+://[^/]*)|(?P<tilde>~))?(?P<path>(?P<partial_path>/[^ \/]+)+)', props['window_properties']['title'])
+if m:
+  ms = m.group('path')
+  if m.group('tilde'):
+    ms = os.environ['HOME'] + ms
+  elif m.group('uri'):
+    if m.group('uri') != 'file://':
+      ms = m.group('uri') + ms
+      print(ms)
+      exit(0)
   if os.path.isdir(ms):
     print(ms)
     exit(0)
@@ -47,7 +75,7 @@ print(props['window'])
 exit(1)
 ")
 
-if [ "$?" -eq 1 ]; then
+if [ "$?" -eq "1" ]; then
   PWD=$(pwdx \
         $( \
           xprop -id ${PWD} \
