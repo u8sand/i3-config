@@ -150,6 +150,7 @@ bindsym $alt+$super+$shift+Down exec --no-startup-id bash -c "$conf/scripts/rela
 bindsym $alt+$super+$shift+Up exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 2 true"
 
 ### Absolute
+bindsym $super+g [urgent=latest] focus
 
 bindsym $super+1 workspace number 1
 bindsym $super+2 workspace number 2
