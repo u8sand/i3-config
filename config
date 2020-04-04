@@ -107,6 +107,7 @@ for_window [class="insync.py"] floating enable
 # Key Bindings
 
 ## General Key Bindings
+bindsym XF86Sleep exec --no-startup-id bash -c "systemctl suspend && i3lock -c '#111111'"
 bindsym $super+l exec --no-startup-id i3lock -c "#111111"
 bindsym $super+q kill
 bindsym $super+z floating toggle
