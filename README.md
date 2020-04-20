@@ -17,6 +17,7 @@ Though there are many, many of these things you probably already have installed 
   - i3-gaps
   - i3blocks
   - i3lock
+- jq (i3-msg json parsing)
 - lm_sensors (blocks/temperature)
 - playerctl (blocks/media_player, mediakeys)
 - python3 (i3-msg json parsing)
