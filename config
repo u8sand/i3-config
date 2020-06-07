@@ -229,10 +229,10 @@ exec --no-startup-id start-pulseaudio-x11 &
 ## Restartable Daemons
 exec_always --no-startup-id bash -c "$conf/scripts/setup_autoname.sh" &
 exec_always --no-startup-id xfsettingsd --replace &
+exec_always --no-startup-id picom --config "$conf/settings/picom.conf" &
 
 ## Persistant Deamons
 exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
-exec --no-startup-id picom --config "$conf/settings/picom.conf" &
 exec --no-startup-id /usr/lib/kdeconnectd &
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id start-pulseaudio-x11 &
