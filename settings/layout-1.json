@@ -1,39 +1,95 @@
 {
+    "border": "normal",
+    "floating": "auto_off",
     "layout": "splitv",
-    "percent": 0.67,
+    "percent": 0.5,
+    "type": "con",
     "nodes": [
         {
-            "name": "google-chrome-stable https://mail.google.com/mail/u/1/ https://calendar.google.com/calendar/b/1/r",
-            "percent": 1,
+            "border": "none",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 646,
+               "width": 1064,
+               "x": 839,
+               "y": 58
+            },
+            "name": "/opt/google/chrome/google-chrome --profile-directory=Default --app-id=miilmjmgkdhdabfkjkilgecbhbchboem",
+            "percent": 0.5,
             "swallows": [
                {
-                    "class": "^Google\\-chrome$"
+               "instance": "^crx_miilmjmgkdhdabfkjkilgecbhbchboem$"
                }
-            ]
+            ],
+            "type": "con"
+        },
+        {
+            "border": "none",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 646,
+               "width": 1064,
+               "x": 839,
+               "y": 58
+            },
+            "name": "/opt/google/chrome/google-chrome --profile-directory=Default --app-id=kjbdgfilnfhdoflbpgamdcdgpehopbep",
+            "percent": 0.5,
+            "swallows": [
+               {
+               "instance": "^crx_kjbdgfilnfhdoflbpgamdcdgpehopbep$"
+               }
+            ],
+            "type": "con"
         }
     ]
 }
+
 {
+    "border": "normal",
+    "floating": "auto_off",
     "layout": "splitv",
-    "percent": 0.33,
+    "percent": 0.5,
+    "type": "con",
     "nodes": [
         {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1021,
+               "width": 1916,
+               "x": 0,
+               "y": 0
+            },
             "name": "nemo",
             "percent": 0.5,
             "swallows": [
                {
-                    "class": "^Nemo$"
+               "instance": "^nemo$"
                }
-            ]
+            ],
+            "type": "con"
         },
         {
+            "border": "normal",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 977,
+               "width": 936,
+               "x": 0,
+               "y": 0
+            },
             "name": "konsole",
             "percent": 0.5,
             "swallows": [
                {
-                   "class": "^konsole$"
+               "instance": "^konsole$"
                }
-            ]
+            ],
+            "type": "con"
         }
     ]
 }
