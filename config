@@ -223,27 +223,21 @@ bindsym $shift+$ctrl+Escape exec --no-startup-id ksysguard
 bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/scripts/cycle_mousekeys.sh"
 bindsym $super+grave exec --no-startup-id code -n "/home/u8sand/danieljbclarke@gmail.com/Notes"
 
-# Startupd
-exec --no-startup-id start-pulseaudio-x11 &
-
 ## Restartable Daemons
 exec_always --no-startup-id bash -c "$conf/scripts/setup_autoname.sh" &
 exec_always --no-startup-id xfsettingsd --replace &
 exec_always --no-startup-id picom --config "$conf/settings/picom.conf" &
 
-## Persistant Deamons
+## Persistent Daemons
+exec --no-startup-id start-pulseaudio-x11 &
 exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
 exec --no-startup-id /usr/lib/kdeconnectd &
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id start-pulseaudio-x11 &
 exec --no-startup-id xfce4-clipman -d &
-
-## Applications
-exec --no-startup-id clementine &
 exec --no-startup-id dropbox &
-#exec --no-startup-id insync start &
+exec --no-startup-id insync start &
 exec --no-startup-id pasystray &
-exec --no-startup-id transmission-gtk &
 
 ## Workspace
 exec --no-startup-id bash -c "$conf/scripts/load_layout.sh 1" &
