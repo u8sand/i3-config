@@ -96,12 +96,8 @@ bindsym $super+y exec --no-startup-id yourprogram
 
 If you want to tie into `context_aware_dir` as described above, see how the others do it, just ensure the workdir is `$($conf/scripts/context_aware_dir.sh)`
 
-### Adding an applications on startup
-Find `Startupd` and notice all the sections, probably you'll want to put it under `Applications`. i.e.
-
-```
-exec --no-startup-id mystartupdaemon &
-```
+### Adding an application on startup
+We piggy-back off of the same mechanism other desktops use which provides nice desktop integration with applications that have their own "start this at startup" functionality. All of the core daemons are stored in settings/autostart using the free desktop specification and can be included in the user-local autostart with `ln -s $HOME/.config/i3/settings/autostart $HOME/.config/autostart/i3`, effectively adding these daemons to your standard autostart configuration. Any application registered in `$HOME/.config/autostart`, as with other desktop environments, will be autostarted.
 
 ### Adding icons for your own applications
 We use the `settings/icons.json` file; finding the name on the left can be done with `xprop` on the command line, after executing click the window and look for `WM_CLASS(string)`. The name on the right depends on whatever the [python fontawesome](https://github.com/justbuchanan/fontawesome-python) module thinks; these change once in a while; I typically just open up `ipython`, `import fontawesome` and look for a name in `fontawesome.icons`.

@@ -228,17 +228,7 @@ exec_always --no-startup-id xfsettingsd --replace &
 exec_always --no-startup-id picom --config "$conf/settings/picom.conf" &
 
 ## Persistent Daemons
-exec --no-startup-id xss-lock -- i3lock -c '#111111' &
-exec --no-startup-id start-pulseaudio-x11 &
-exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
-exec --no-startup-id kdeconnect-indicator &
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id start-pulseaudio-x11 &
-exec --no-startup-id xfce4-clipman -d &
-exec --no-startup-id dropbox &
-exec --no-startup-id insync start &
-exec --no-startup-id pasystray &
-exec --no-startup-id blueman-applet &
+exec --no-startup-id dex -a -s $HOME/.config/autostart:$HOME/.config/i3/settings/autostart
 
 ## Workspace
 exec --no-startup-id bash -c "$conf/scripts/load_layout.sh 1" &

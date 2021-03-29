@@ -12,6 +12,7 @@ Though there are many, many of these things you probably already have installed 
 - acpi (blocks/battery)
 - alsa-utils (blocks/volume, mediakeys)
 - compton (window opacity / shadow)
+- dex (.desktop autostart integration)
 - feh (random_wallpaper)
 - i3 (naturally)
   - i3-gaps
