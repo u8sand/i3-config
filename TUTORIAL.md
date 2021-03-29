@@ -28,7 +28,7 @@ But there are **plenty** more to make your life easier--never again will you nee
 - `Super + N`: Launch a jupyter notebook because why not
 - `Super + B`: Launch Baka-MPlayer (my media player)
 - `Super + C`: Launch Clementine (my music player)
-- `Ctrl + Alt + V`: "Sudo" paste--when applications don't support paste :P (hint: we type it for you)
+- `Super + Ctrl + V`: "Sudo" paste--when applications don't support paste :P (hint: we type it for you)
 
 Also very conveniently--`context_aware_dir` detects directories in the window title and uses them when launching directory-aware applications. What this means is that when we're looking at a File Explorer directory, and we use `Super + T`, the terminal opens up **in that directory**; furthermore, the other way around works as well. Never again will you have to keep navigating through directories when you're already there! If you don't want that to happen, just add an extra `Shift`: `Super + Shift + T` will open up a terminal at the default location `~`.
 

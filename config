@@ -212,7 +212,7 @@ bindsym $super+v exec --no-startup-id code -n "$($conf/scripts/context_aware_dir
 bindsym $super+$shift+v exec --no-startup-id code -n
 bindsym $super+w exec --no-startup-id google-chrome-stable --new-window
 bindsym $super+$shift+w exec --no-startup-id google-chrome-stable --new-window --profile-directory="Guest Profile"
-bindsym $ctrl+$alt+v exec --no-startup-id bash -c "$conf/scripts/sudo_paste.sh"
+bindsym $super+$ctrl+v exec --no-startup-id bash -c "$conf/scripts/sudo_paste.sh"
 bindsym $super+$shift+x exec --no-startup-id bash -c "$conf/scripts/rm_wallpaper.sh"
 bindsym --release $ctrl+Print exec --no-startup-id xfce4-screenshooter -wc
 bindsym --release $shift+Print exec --no-startup-id xfce4-screenshooter -rc
