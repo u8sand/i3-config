@@ -33,6 +33,7 @@ Though there are many, many of these things you probably already have installed 
 - xfconf (cycle_mouse)
 - xmacro (sudo_paste)
 - xorg-xprop (autoname_worspaces)
+- xss-lock (systemd lock integration)
 
 
 ### Quick Install

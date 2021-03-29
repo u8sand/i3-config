@@ -105,8 +105,8 @@ for_window [class="insync.py"] floating enable
 # Key Bindings
 
 ## General Key Bindings
-bindsym XF86Sleep exec --no-startup-id bash -c "systemctl suspend && i3lock -c '#111111'"
-bindsym $super+l exec --no-startup-id i3lock -c "#111111"
+bindsym XF86Sleep exec --no-startup-id systemctl suspend
+bindsym $super+l exec --no-startup-id loginctl lock-session
 bindsym $super+q kill
 bindsym $super+z floating toggle
 bindsym $ctrl+$super+c reload
@@ -227,6 +227,7 @@ exec_always --no-startup-id xfsettingsd --replace &
 exec_always --no-startup-id picom --config "$conf/settings/picom.conf" &
 
 ## Persistent Daemons
+exec --no-startup-id xss-lock -- i3lock -c '#111111' &
 exec --no-startup-id start-pulseaudio-x11 &
 exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
 exec --no-startup-id kdeconnect-indicator &
