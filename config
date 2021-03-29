@@ -14,8 +14,6 @@ focus_follows_mouse no
 mouse_warping none
 workspace_auto_back_and_forth yes
 floating_modifier $super
-gaps inner 10
-gaps outer 5
 
 
 # Per workspace settings
