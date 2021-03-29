@@ -229,7 +229,3 @@ exec_always --no-startup-id picom --config "$conf/settings/picom.conf" &
 
 ## Persistent Daemons
 exec --no-startup-id dex -a -s $HOME/.config/autostart:$HOME/.config/i3/settings/autostart
-
-## Workspace
-exec --no-startup-id bash -c "$conf/scripts/load_layout.sh 1" &
-
