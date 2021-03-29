@@ -1,12 +1,14 @@
 acpi
 alsa-utils
-compton
+dex
 feh
 i3-gaps
 i3blocks
 i3lock
 i3status
+jq
 lm_sensors
+picom
 playerctl
 python
 rofi
@@ -18,3 +20,4 @@ xfce4-settings
 xfconf
 xmacro
 xorg-xprop
+xss-lock

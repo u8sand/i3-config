@@ -11,7 +11,6 @@ Though there are many, many of these things you probably already have installed 
 
 - acpi (blocks/battery)
 - alsa-utils (blocks/volume, mediakeys)
-- compton (window opacity / shadow)
 - dex (.desktop autostart integration)
 - feh (random_wallpaper)
 - i3 (naturally)
@@ -20,6 +19,7 @@ Though there are many, many of these things you probably already have installed 
   - i3lock
 - jq (i3-msg json parsing)
 - lm_sensors (blocks/temperature)
+- picom (window opacity / shadow)
 - playerctl (blocks/media_player, mediakeys)
 - python3 (i3-msg json parsing)
   - jsonpath (context_aware_dir)
