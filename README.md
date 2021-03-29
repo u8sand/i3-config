@@ -39,6 +39,13 @@ Though there are many, many of these things you probably already have installed 
 ### Quick Install
 
 ```bash
+# maybe backup your existing directory
+mv ~/.config/i3{,.sav}
+
+# clone into i3 config directory
+git clone https://github.com/u8sand/i3-config ~/.config/i3
+cd ~/.config/i3
+
 # replace yay with your AUR/pacman wrapper, or just use pacman filtering out the aur packages
 yay -S - < arch.txt
 pip3 install --user -r requirements.txt
