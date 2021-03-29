@@ -191,7 +191,8 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 ## Custom Application Key Bindings
-bindsym $super+a exec --no-startup-id atom "$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+a exec --no-startup-id atom -n "$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+$shift+a exec --no-startup-id atom -n
 bindsym $super+b exec --no-startup-id baka-mplayer "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+b exec --no-startup-id baka-mplayer
 bindsym $super+c exec --no-startup-id clementine
