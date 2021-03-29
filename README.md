@@ -21,6 +21,7 @@ Though there are many, many of these things you probably already have installed 
 - lm_sensors (blocks/temperature)
 - picom (window opacity / shadow)
 - playerctl (blocks/media_player, mediakeys)
+- pwdx (context_aware_dir)
 - python3 (i3-msg json parsing)
   - jsonpath (context_aware_dir)
   - i3ipc  (autoname_worspaces)
