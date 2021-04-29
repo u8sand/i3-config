@@ -1,0 +1,6 @@
+[Desktop Entry]
+Comment=Setup i3 locker
+Exec=xss-lock -- i3lock -c '#111111'
+Name=External Locker
+Terminal=false
+Type=Application

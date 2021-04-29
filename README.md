@@ -11,14 +11,17 @@ Though there are many, many of these things you probably already have installed 
 
 - acpi (blocks/battery)
 - alsa-utils (blocks/volume, mediakeys)
-- compton (window opacity / shadow)
+- dex (.desktop autostart integration)
 - feh (random_wallpaper)
 - i3 (naturally)
   - i3-gaps
   - i3blocks
   - i3lock
+- jq (i3-msg json parsing)
 - lm_sensors (blocks/temperature)
+- picom (window opacity / shadow)
 - playerctl (blocks/media_player, mediakeys)
+- pwdx (context_aware_dir)
 - python3 (i3-msg json parsing)
   - jsonpath (context_aware_dir)
   - i3ipc  (autoname_worspaces)
@@ -34,11 +37,19 @@ Though there are many, many of these things you probably already have installed 
 - xmacro (sudo_paste)
 - xorg-xprop (autoname_worspaces)
 - xorg-xrandr (monitor)
+- xss-lock (systemd lock integration)
 
 
 ### Quick Install
 
 ```bash
+# maybe backup your existing directory
+mv ~/.config/i3{,.sav}
+
+# clone into i3 config directory
+git clone https://github.com/u8sand/i3-config ~/.config/i3
+cd ~/.config/i3
+
 # replace yay with your AUR/pacman wrapper, or just use pacman filtering out the aur packages
 yay -S - < arch.txt
 pip3 install --user -r requirements.txt

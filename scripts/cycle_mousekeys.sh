@@ -3,7 +3,7 @@
 export conf=$(cd $(dirname $0)/.. ; pwd -P)
 source "$conf/settings/env.sh"
 
-let current=$(xfconf-query -c a1ccessibility -p /MouseKeys/MaxSpeed)
+let current=$(xfconf-query -c accessibility -p /MouseKeys/MaxSpeed)
 let next="($current + 1000) % 6000"
 
 if [ "$current" == "0" ]; then

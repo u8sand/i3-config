@@ -1,5 +1,5 @@
 # Variables
-set $conf "$HOME/.config/i3"
+set $conf $HOME/.config/i3
 set $alt Mod1
 set $super Mod4
 set $ctrl Ctrl
@@ -14,8 +14,6 @@ focus_follows_mouse no
 mouse_warping none
 workspace_auto_back_and_forth yes
 floating_modifier $super
-gaps inner 10
-gaps outer 5
 
 
 # Per workspace settings
@@ -107,7 +105,8 @@ for_window [class="insync.py"] floating enable
 # Key Bindings
 
 ## General Key Bindings
-bindsym $super+l exec --no-startup-id i3lock -c "#111111"
+bindsym XF86Sleep exec --no-startup-id systemctl suspend
+bindsym $super+l exec --no-startup-id loginctl lock-session
 bindsym $super+q kill
 bindsym $super+z floating toggle
 bindsym $ctrl+$super+c reload
@@ -150,6 +149,7 @@ bindsym $alt+$super+$shift+Down exec --no-startup-id bash -c "$conf/scripts/rela
 bindsym $alt+$super+$shift+Up exec --no-startup-id bash -c "$conf/scripts/relative_workspace.sh 2 true"
 
 ### Absolute
+bindsym $super+g [urgent=latest] focus
 
 bindsym $super+1 workspace number 1
 bindsym $super+2 workspace number 2
@@ -193,6 +193,8 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 ## Custom Application Key Bindings
+bindsym $super+a exec --no-startup-id atom -n "$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+$shift+a exec --no-startup-id atom -n
 bindsym $super+b exec --no-startup-id baka-mplayer "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+b exec --no-startup-id baka-mplayer
 bindsym $super+c exec --no-startup-id clementine
@@ -200,52 +202,34 @@ bindsym $super+d exec --no-startup-id bash -c "$conf/scripts/monitor.sh"
 bindsym $super+e exec --no-startup-id nemo "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+e exec --no-startup-id nemo
 bindsym $super+f exec --no-startup-id rofi -show window -config "$conf/settings/rofi.conf"
-bindsym $super+i exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)" -e jupyter console
+bindsym $super+i exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh jupyter console
 bindsym $super+m exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh"
-bindsym $super+n exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)" -e jupyter notebook
+bindsym $super+n exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh jupyter notebook
 bindsym $super+o exec --no-startup-id libreoffice
 bindsym $super+p exec --no-startup-id rofi -show run -config "$conf/settings/rofi.conf"
 bindsym $super+r exec --no-startup-id rofi -show drun -config "$conf/settings/rofi.conf"
 bindsym $super+s exec --no-startup-id subl3 -n "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+s exec --no-startup-id subl3 -n
-bindsym $super+t exec --no-startup-id konsole --workdir "$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+t exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh "${SHELL}"
 bindsym $super+$shift+t exec --no-startup-id konsole
 bindsym $super+v exec --no-startup-id code -n "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+v exec --no-startup-id code -n
-bindsym $super+w exec --no-startup-id google-chrome-stable
-bindsym $super+$shift+w exec --no-startup-id bash -c "google-chrome-stable http://$(ip route | awk '/^default via/{print $3}')"
-bindsym $ctrl+$alt+v exec --no-startup-id bash -c "$conf/scripts/sudo_paste.sh"
+bindsym $super+w exec --no-startup-id chromium --new-window
+bindsym $super+$shift+w exec --no-startup-id chromium --new-window --profile-directory="Guest Profile"
+bindsym $ctrl+$alt+w exec --no-startup-id bash -c "google-chrome-stable http://$(ip route | awk '/^default via/{print $3}')"
+bindsym $super+$ctrl+v exec --no-startup-id bash -c "$conf/scripts/sudo_paste.sh"
 bindsym $super+$shift+x exec --no-startup-id bash -c "$conf/scripts/rm_wallpaper.sh"
 bindsym --release $ctrl+Print exec --no-startup-id xfce4-screenshooter -wc
 bindsym --release $shift+Print exec --no-startup-id xfce4-screenshooter -rc
 bindsym --release $alt+Print exec --no-startup-id xfce4-screenshooter -fc
 bindsym $shift+$ctrl+Escape exec --no-startup-id ksysguard
 bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/scripts/cycle_mousekeys.sh"
-bindsym $super+grave exec --no-startup-id code -n "/home/u8sand/danieljbclarke@gmail.com/Notes"
-
-# Startupd
-exec --no-startup-id start-pulseaudio-x11 &
+bindsym $super+grave exec --no-startup-id code -n "$HOME/Notes"
 
 ## Restartable Daemons
 exec_always --no-startup-id bash -c "$conf/scripts/setup_autoname.sh" &
 exec_always --no-startup-id xfsettingsd --replace &
+exec_always --no-startup-id picom --config "$conf/settings/picom.conf" &
 
-## Persistant Deamons
-# exec --no-startup-id /usr/lib/kdeconnectd &
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh" &
-exec --no-startup-id picom --config "$conf/settings/picom.conf" &
-exec --no-startup-id start-pulseaudio-x11 &
-exec --no-startup-id xfce4-clipman -d &
-exec --no-startup-id xfce4-power-manager &
-
-## Applications
-# exec --no-startup-id clementine &
-# exec --no-startup-id deluge &
-# exec --no-startup-id dropbox &
-# exec --no-startup-id insync start &
-exec --no-startup-id netctl-gui &
-exec --no-startup-id pasystray &
-
-## Workspace
-# exec --no-startup-id bash -c "$conf/scripts/load_layout.sh 1" &
+## Persistent Daemons
+exec --no-startup-id dex -a -s $HOME/.config/autostart:$HOME/.config/i3/settings/autostart

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Comment=GNOME Keyring: SSH Agent
+Exec=/usr/bin/gnome-keyring-daemon --start --components=ssh
+Name=SSH Key Agent
+Type=Application

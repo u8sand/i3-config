@@ -1,0 +1,8 @@
+[Desktop Entry]
+Comment=An Applet for PulseAudio
+Exec=pasystray
+Icon=pasystray
+Keywords=pulseaudio;tray;system tray;applet;volume;
+Name=PulseAudio System Tray
+Type=Application
+Version=1.0
