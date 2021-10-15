@@ -204,7 +204,7 @@ bindsym $super+m exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh
 bindsym $super+n exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh jupyter notebook
 bindsym $super+o exec --no-startup-id libreoffice
 bindsym $super+p exec --no-startup-id rofi -show run -theme "$conf/settings/rofi.rasi"
-bindsym $super+r exec --no-startup-id rofi -show drun -theme "$conf/settings/rofi.rasi"
+bindsym $super+r exec --no-startup-id rofi -show drun -show-icons -theme "$conf/settings/rofi.rasi"
 bindsym $super+s exec --no-startup-id subl3 -n "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+s exec --no-startup-id subl3 -n
 bindsym $super+t exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh "${SHELL}"

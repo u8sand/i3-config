@@ -58,7 +58,7 @@ pip3 install --user -r requirements.txt
 - `autoname_workspaces.py` was borrowed / modified and extended
 - `/blocks` code I've borrowed / modified
 - `compton.conf` was borrowed / modified
-- `rofi.conf` was borrowed
+- `rofi.rasi` was borrowed / modified
 - `wacom.sh` and `xsetwacom_my_preferences.sh` was borrowed / modified
 
 The rest of the scripts, configuration, and bringing them all together were done over the years by myself.
