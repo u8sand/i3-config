@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#crontab: */2 * * * *  DISPLAY=:0.0 "$conf/scripts/random_wallpaper.sh" &
+# To enable, add `settings/systemd/random-wallpaper.*` to ~/.config/systemd/user/
 
 export conf=$(cd $(dirname $0)/.. ; pwd -P)
 source "$conf/settings/env.sh"

@@ -1,0 +1,8 @@
+[Unit]
+Description=Randomize wallpaper every 5 minutes
+
+[Service]
+ExecStart=/usr/bin/env DISPLAY=:0.0 $HOME/.config/i3/scripts/random_wallpaper.sh
+
+[Install]
+WantedBy=multi-user.target
