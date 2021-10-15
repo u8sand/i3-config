@@ -1,35 +1,21 @@
-#!/bin/bash
+#!/usr/bin/python
 
-TEMP_DEVICE="${BLOCK_INSTANCE:-Core}"
-TEMP_OUTPUT=$(sensors | grep "${TEMP_DEVICE}")
+import os, sh, io, json, itertools as it
 
-IS_URGENT=0
-
-TOTAL_TEMP=0
-TOTAL_COUNT=0
-while read RESULT_LINE; do
-  TOTAL_COUNT=$((TOTAL_COUNT +1))
-  CURRENT_TEMP=$(echo "${RESULT_LINE}" | grep -o -E "[\+\-]?[0-9]*.[0-9]*°C" | sed -n '1p' | tr -d '+°C')
-  URGENT_VALUE=$(echo "${RESULT_LINE}" | grep -o -E "[\+\-]?[0-9]*.[0-9]*°C" | sed -n '2p' | tr -d '+°C')
-
-  TOTAL_TEMP=$(echo "scale=2;${TOTAL_TEMP}+${CURRENT_TEMP}" | bc -l)
-  IS_CRITICAL=$(echo "scale=0;${CURRENT_TEMP}-${URGENT_VALUE} >= 0" | bc -l)
-
-  if [[ "${IS_CRITICAL}" -eq 1 ]]; then
-    IS_URGENT=1
-  fi
-done <<< "$(echo -e "$TEMP_OUTPUT")"
-
-AVERAGE_TEMP=$(echo "scale=0;${TOTAL_TEMP}/${TOTAL_COUNT}" | bc -l)
-
-if [[ "${TOTAL_COUNT}" -gt 1 ]]; then
-  AVERAGE_TEMP="~ ${AVERAGE_TEMP}"
-fi
-
-echo "${AVERAGE_TEMP}°C"
-echo "${AVERAGE_TEMP}°C"
-echo ""
-
-if [[ "${IS_URGENT}" -eq 1 ]]; then
-  exit 33
-fi
+def mean(L): return sum(L) / len(L) if L else 0
+sensors = json.load(io.BytesIO(sh.sensors('-j').stdout))
+relevant = os.environ.get('BLOCK_INSTANCE', ';'.join(sensors.keys())).split(';')
+temp = mean([
+  value
+  for sensor, metadata in sensors.items()
+  for name, readings in metadata.items()
+  if name !=' Adapter' and any(it.chain(
+    (sensor in relevant, metadata['Adapter'] in relevant),
+    (name.startswith(r) for r in relevant),
+  ))
+  for reading, value in (readings if type(readings) == dict else {}).items()
+  if reading.endswith('_input')
+])
+print(f" {temp:.1f} °C")
+print(f" {temp:.1f} °C")
+print("")
