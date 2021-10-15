@@ -1,3 +1,4 @@
+click==8.0.1
 fontawesome==5.10.1.post1
 i3-py==0.6.4
 i3ipc==2.1.1

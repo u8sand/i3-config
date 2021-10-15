@@ -1,0 +1,6 @@
+[Desktop Entry]
+Comment=Watch journal logs and notify the desktop on error
+Exec=$HOME/.config/i3/scripts/journalctl-inotify.py
+Name=Journal Notifier
+Terminal=false
+Type=Application
