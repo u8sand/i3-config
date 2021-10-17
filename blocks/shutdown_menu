@@ -40,7 +40,7 @@ conf=/home/u8sand/.config/i3
 
 # Options not related to colors
 ROFI_TEXT="Menu:"
-ROFI_OPTIONS="-width -11 -location 3 -hide-scrollbar -bw 2 -config $conf/rofi.conf"
+ROFI_OPTIONS="-width -11 -location 3 -hide-scrollbar -bw 2 -theme $conf/settings/rofi.rasi"
 
 # Zenity options
 ZENITY_TITLE="Menu"
