@@ -45,21 +45,23 @@ END {
 		used=(mem_total-mem_free)/1024/1024
 		total=mem_total/1024/1024
 	}
-	pct=used/total*100
+	if (total > 0) {
+		pct=used/total*100
 
-	# full text
-	printf("%.1fG/%.1fG (%.f%%)\n", used, total, pct)
+		# full text
+		printf("%.1fG/%.1fG (%.f%%)\n", used, total, pct)
 
-	# short text
-	printf("%.f%%\n", pct)
+		# short text
+		printf("%.f%%\n", pct)
 
-	# color
-	if (pct > 90) {
-		print("#FF0000\n")
-	} else if (pct > 80) {
-		print("#FFAE00\n")
-	} else if (pct > 70) {
-		print("#FFF600\n")
+		# color
+		if (pct > 90) {
+			print("#FF0000\n")
+		} else if (pct > 80) {
+			print("#FFAE00\n")
+		} else if (pct > 70) {
+			print("#FFF600\n")
+		}
 	}
 }
 ' /proc/meminfo

@@ -1,7 +1,0 @@
-[Desktop Entry]
-Comment=Start the PulseAudio Sound System
-Exec=start-pulseaudio-x11
-Name=PulseAudio Sound System
-Terminal=false
-Type=Application
-Version=1.0

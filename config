@@ -201,13 +201,13 @@ bindsym $super+c exec --no-startup-id clementine
 bindsym $super+d exec --no-startup-id bash -c "$conf/scripts/monitor.sh"
 bindsym $super+e exec --no-startup-id nemo "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+e exec --no-startup-id nemo
-bindsym $super+f exec --no-startup-id rofi -show window -config "$conf/settings/rofi.conf"
+bindsym $super+f exec --no-startup-id rofi -show window -theme "$conf/settings/rofi.rasi"
 bindsym $super+i exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh jupyter console
 bindsym $super+m exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh"
 bindsym $super+n exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh jupyter notebook
 bindsym $super+o exec --no-startup-id libreoffice
-bindsym $super+p exec --no-startup-id rofi -show run -config "$conf/settings/rofi.conf"
-bindsym $super+r exec --no-startup-id rofi -show drun -config "$conf/settings/rofi.conf"
+bindsym $super+p exec --no-startup-id rofi -show run -theme "$conf/settings/rofi.rasi"
+bindsym $super+r exec --no-startup-id rofi -show drun -show-icons -theme "$conf/settings/rofi.rasi"
 bindsym $super+s exec --no-startup-id subl3 -n "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+s exec --no-startup-id subl3 -n
 bindsym $super+t exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh "${SHELL}"
@@ -232,4 +232,4 @@ exec_always --no-startup-id xfsettingsd --replace &
 exec_always --no-startup-id picom --config "$conf/settings/picom.conf" &
 
 ## Persistent Daemons
-exec --no-startup-id dex -a -s $HOME/.config/autostart:$HOME/.config/i3/settings/autostart
+exec --no-startup-id dex -a -s $HOME/.config/autostart:$HOME/.config/i3/settings/autostart &
