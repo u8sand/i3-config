@@ -20,5 +20,6 @@ xf86-input-wacom
 xfce4-settings
 xfconf
 xmacro
+xorg-xbacklight
 xorg-xprop
 xss-lock
