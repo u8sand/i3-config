@@ -112,7 +112,7 @@ no_focus [class="plasmashell" window_type="notification"]
 
 ## General Key Bindings
 bindsym XF86Sleep exec --no-startup-id systemctl suspend
-bindsym $super+l exec --no-startup-id loginctl lock-session
+bindsym $super+l exec --no-startup-id "$conf/scripts/lock.sh"
 bindsym $super+q kill
 bindsym $super+z floating toggle
 bindsym $ctrl+$super+c reload
