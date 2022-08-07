@@ -1,5 +1,0 @@
-[Desktop Entry]
-Exec=/usr/lib/xfce4/notifyd/xfce4-notifyd
-Icon=org.xfce.notification
-Name=Xfce Notification Daemon
-Type=Application
