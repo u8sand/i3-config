@@ -216,9 +216,9 @@ bindsym $super+$shift+w exec --no-startup-id chromium --new-window --profile-dir
 bindsym $ctrl+$alt+w exec --no-startup-id bash -c "google-chrome-stable http://$(ip route | awk '/^default via/{print $3}')"
 bindsym $super+$ctrl+v exec --no-startup-id bash -c "$conf/scripts/sudo_paste.sh"
 bindsym $super+$shift+x exec --no-startup-id bash -c "$conf/scripts/rm_wallpaper.sh"
-bindsym --release $ctrl+Print exec --no-startup-id xfce4-screenshooter -wc
-bindsym --release $shift+Print exec --no-startup-id xfce4-screenshooter -rc
-bindsym --release $alt+Print exec --no-startup-id xfce4-screenshooter -fc
+bindsym --release $ctrl+Print exec --no-startup-id spectacle -bac
+bindsym --release $shift+Print exec --no-startup-id spectacle -brc
+bindsym --release $alt+Print exec --no-startup-id spectacle -bfc
 bindsym $shift+$ctrl+Escape exec --no-startup-id ksysguard
 bindsym $shift+Num_Lock exec --no-startup-id bash -c "$conf/scripts/cycle_mousekeys.sh"
 bindsym $super+grave exec --no-startup-id code -n "$HOME/Notes"
