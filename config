@@ -199,8 +199,8 @@ bindsym $super+b exec --no-startup-id baka-mplayer "$($conf/scripts/context_awar
 bindsym $super+$shift+b exec --no-startup-id baka-mplayer
 bindsym $super+c exec --no-startup-id clementine
 bindsym $super+d exec --no-startup-id bash -c "$conf/scripts/monitor.sh"
-bindsym $super+e exec --no-startup-id nemo "$($conf/scripts/context_aware_dir.sh)"
-bindsym $super+$shift+e exec --no-startup-id nemo
+bindsym $super+e exec --no-startup-id dolphin --new-window "$($conf/scripts/context_aware_dir.sh)"
+bindsym $super+$shift+e exec --no-startup-id dolphin --new-window
 bindsym $super+f exec --no-startup-id rofi -show window -theme "$conf/settings/rofi.rasi"
 bindsym $super+i exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh jupyter console
 bindsym $super+m exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh"
