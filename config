@@ -207,7 +207,8 @@ bindsym $super+c exec --no-startup-id clementine
 bindsym $super+e exec --no-startup-id dolphin --new-window "$($conf/scripts/context_aware_dir.sh)"
 bindsym $super+$shift+e exec --no-startup-id dolphin --new-window
 bindsym $super+f exec --no-startup-id rofi -show window -theme "$conf/settings/rofi.rasi"
-bindsym $super+i exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh jupyter console
+bindsym $super+i exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh ipython --profile=shell
+bindsym $super+$shift+i exec --no-startup-id konsole -e ipython --profile=shell
 bindsym $super+m exec --no-startup-id bash -c "$conf/scripts/random_wallpaper.sh"
 bindsym $super+n exec --no-startup-id konsole -e env CONTEXT="$($conf/scripts/context_aware_dir.sh)" $conf/scripts/with_context.sh jupyter notebook
 bindsym $super+o exec --no-startup-id libreoffice
