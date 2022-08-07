@@ -1,6 +1,5 @@
 acpi
 alsa-utils
-dex
 feh
 i3-gaps
 i3blocks
@@ -17,9 +16,6 @@ sysstat
 trash-cli
 xclip
 xf86-input-wacom
-xfce4-settings
-xfconf
 xmacro
 xorg-xbacklight
 xorg-xprop
-xss-lock

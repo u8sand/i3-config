@@ -11,7 +11,6 @@ Though there are many, many of these things you probably already have installed 
 
 - acpi (blocks/battery)
 - alsa-utils (blocks/volume, mediakeys)
-- dex (.desktop autostart integration)
 - feh (random_wallpaper)
 - i3 (naturally)
   - i3-gaps
@@ -31,13 +30,10 @@ Though there are many, many of these things you probably already have installed 
 - trash-cli (rm_wallpaper)
 - xclip (sudo_paste)
 - xf86-input-wacom (wacom)
-- xfce4-settings (xfsettingsd)
-- xfce4-power-manager (config)
 - xfconf (cycle_mouse)
 - xmacro (sudo_paste)
 - xorg-xprop (autoname_worspaces)
 - xorg-xrandr (monitor)
-- xss-lock (systemd lock integration)
 
 
 ### Quick Install
