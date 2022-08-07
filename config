@@ -41,7 +41,6 @@ workspace 10 output $disp2
 bar {
   output $disp1
   position top
-  workspace_buttons no
   tray_output none
   i3bar_command i3bar -t
   status_command i3blocks -c "$conf/settings/i3blocks.top.left.conf"
@@ -56,7 +55,6 @@ bar {
   output $disp2
   position top
   tray_output none
-  workspace_buttons no
   i3bar_command i3bar -t
   status_command i3blocks -c "$conf/settings/i3blocks.top.right.conf"
   height 25
@@ -70,7 +68,7 @@ bar {
   output $disp1
   position bottom
   tray_output none
-  # tray_output $disp1
+  workspace_buttons no
   i3bar_command i3bar -t
   status_command i3blocks -c "$conf/settings/i3blocks.bottom.left.conf"
   height 30
@@ -79,20 +77,6 @@ bar {
     statusline #ffffffff
   }
 }
-
-bar {
-  output $disp2
-  position bottom
-  tray_output $disp2
-  i3bar_command i3bar -t
-  # status_command i3blocks -c "$conf/settings/i3blocks.bottom.right.conf"
-  height 30
-  colors {
-    background #00000088
-    statusline #ffffffff
-  }
-}
-
 
 # Per Window Layouts
 for_window [window_type="dialog"] floating enable
@@ -109,6 +93,20 @@ for_window [window_type="notification"] floating enable
 for_window [class="baka-mplayer"] floating enable
 for_window [class="mochi-player"] floating enable
 for_window [class="insync.py"] floating enable
+
+# KDE
+for_window [title="Desktop — Plasma"] kill, floating enable, border none
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable, border none
+for_window [title="win7"] floating enable, border none
+for_window [class="krunner"] floating enable, border none
+for_window [class="Kmix"] floating enable, border none
+for_window [class="Klipper"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"] 
 
 # Key Bindings
 
@@ -233,8 +231,5 @@ bindsym $super+grave exec --no-startup-id code -n "$HOME/Notes"
 
 ## Restartable Daemons
 exec_always --no-startup-id bash -c "$conf/scripts/setup_autoname.sh" &
-exec_always --no-startup-id xfsettingsd --replace &
 exec_always --no-startup-id picom --config "$conf/settings/picom.conf" &
-
-## Persistent Daemons
-exec --no-startup-id dex -a -s $HOME/.config/autostart:$HOME/.config/i3/settings/autostart &
+exec_always --no-startup-id xrandr --output $disp1 --left-of $disp2 &
