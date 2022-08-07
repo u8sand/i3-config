@@ -15,7 +15,6 @@ mouse_warping none
 workspace_auto_back_and_forth yes
 floating_modifier $super
 
-
 # Per workspace settings
 workspace 1 output $disp1
 workspace 2 output $disp2
@@ -28,12 +27,24 @@ workspace 8 output $disp2
 workspace 9 output $disp1
 workspace 10 output $disp2
 
+# KDE
+for_window [title="Desktop — Plasma"] kill, floating enable, border none
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable, border none
+for_window [title="win7"] floating enable, border none
+for_window [class="krunner"] floating enable, border none
+for_window [class="Kmix"] floating enable, border none
+for_window [class="Klipper"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"] 
 
 # Gui
 bar {
   output $disp1
   position top
-  workspace_buttons no
   tray_output none
   i3bar_command i3bar -t
   status_command i3blocks -c "$conf/settings/i3blocks.top.left.conf"
@@ -48,7 +59,6 @@ bar {
   output $disp2
   position top
   tray_output none
-  workspace_buttons no
   i3bar_command i3bar -t
   status_command i3blocks -c "$conf/settings/i3blocks.top.right.conf"
   height 25
@@ -61,23 +71,10 @@ bar {
 bar {
   output $disp1
   position bottom
-  tray_output none
+  workspace_buttons no
   tray_output $disp1
   i3bar_command i3bar -t
   status_command i3blocks -c "$conf/settings/i3blocks.bottom.left.conf"
-  height 30
-  colors {
-    background #00000088
-    statusline #ffffffff
-  }
-}
-
-bar {
-  output $disp2
-  position bottom
-  # tray_output $disp2
-  i3bar_command i3bar -t
-  # status_command i3blocks -c "$conf/settings/i3blocks.bottom.right.conf"
   height 30
   colors {
     background #00000088
@@ -230,6 +227,3 @@ bindsym $super+grave exec --no-startup-id code -n "$HOME/Notes"
 exec_always --no-startup-id bash -c "$conf/scripts/setup_autoname.sh" &
 exec_always --no-startup-id xfsettingsd --replace &
 exec_always --no-startup-id picom --config "$conf/settings/picom.conf" &
-
-## Persistent Daemons
-exec --no-startup-id dex -a -s $HOME/.config/autostart:$HOME/.config/i3/settings/autostart &
