@@ -3,6 +3,9 @@
 # Using the CONTEXT environment variable, we can augment how we execute a
 #  given command -- for now we mainly case about ssh for seemless context-aware-ssh
 #  when we're e.g. looking at a remote folder, or want to open a new terminal.
+# To make this work better, the remotes you operate on should make the prompt
+#  title include: ${PROTO}${PATH} -- this will enable back-and-forth operability of
+#  context aware paths.
 
 if [ ! -z "${CONTEXT}" ]; then
   _uri="$(echo ${CONTEXT} | sed 's/^\([^ :]\{1,\}:\/\/[^\/]*\)\{,1\}\(.\{1,\}\)$/\1/')"
@@ -14,13 +17,13 @@ if [ ! -z "${CONTEXT}" ]; then
     # Custom terminal handling of varous URI protocols
     echo "${_uri}" | grep -q '^ssh://'
     if [ "$?" -eq "0" ]; then
-      ssh -t "$(echo ${_uri} | cut -c7-)" "cd \"${_path}\" && $@"
+      ssh -t "$(echo ${_uri} | cut -c7-)" "export PROTO='${_uri}'; cd \"${_path}\"; $@"
       exit $?
     fi
 
     echo "${_uri}" | grep -q '^sftp://'
     if [ "$?" -eq "0" ]; then
-      ssh -t "$(echo ${_uri} | cut -c8-)" "cd \"${_path}\" && $@"
+      ssh -t "$(echo ${_uri} | cut -c8-)" "export PROTO='${_uri}'; cd \"${_path}\"; $@"
       exit $?
     fi
   fi
