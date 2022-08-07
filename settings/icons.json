@@ -33,6 +33,7 @@
   "subl3": "file-code",
   "thunar": "file",
   "transmission-gtk": "download",
+  "virt-manager": "desktop",
   "virtualbox": "desktop",
   "xfce4-terminal": "terminal"
 }
