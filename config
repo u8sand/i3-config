@@ -14,7 +14,15 @@ focus_follows_mouse no
 mouse_warping none
 workspace_auto_back_and_forth yes
 floating_modifier $super
+hide_edge_borders smart
 
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c789980 #28557780 #ffffff #2e9ef480 #28557780
+client.focused_inactive #33333380 #5f676a80 #ffffff #484e5080 #5f676a80
+client.unfocused        #33333380 #22222280 #888888 #292d2e80 #22222280
+client.urgent           #2f343a80 #90000080 #ffffff #90000080 #90000080
+client.placeholder      #00000080 #0c0c0c80 #ffffff #00000080 #0c0c0c80
+client.background       #ffffff80
 
 # Per workspace settings
 workspace 1 output $disp1
