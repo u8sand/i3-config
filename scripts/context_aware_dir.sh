@@ -55,7 +55,7 @@ props = jsonpath.jsonpath(
   '$..nodes[?(@.focused)]',
 )[0]
 
-m = re.search(r'(?P<remote_annotation>SSH: (?P<remote>[^ ]+) )?(?P<prefix>(?P<uri>[^ :]+://[^/]*)|(?P<tilde>~))?(?P<path>(?P<partial_path>/[^ \/]+)+)', props['window_properties']['title'])
+m = re.search(r'(?P<remote_annotation>SSH: (?P<remote>[^ ]+) )?(?P<prefix>(?P<uri>[^ :]+://[^/]*)|(?P<tilde>~))?(?P<path>(?P<partial_path>/[^ \/]*)+)', props['window_properties']['title'])
 if m:
   ms = m.group('path')
   if m.group('remote'):
