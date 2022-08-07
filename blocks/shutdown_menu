@@ -26,10 +26,7 @@
 #                            BEGIN CONFIG                             #
 #######################################################################
 
-conf=/home/u8sand/.config/i3
-
-# Use a custom lock script
-# LOCKSCRIPT="i3lock -f"
+conf=$(cd $(dirname $0)/.. ; pwd -P)
 
 # Colors: FG (foreground), BG (background), HL (highlighted)
 # FG_COLOR="#bbbbbb"
@@ -114,14 +111,15 @@ fi
 typeset -A menu
 
 # Menu with keys/commands
+LOGINCTL_SESSION_ID=$(loginctl session-status | awk 'NR==1 { print $1 }')
 menu=(
   [Shutdown]="systemctl poweroff"
   [Reboot]="systemctl reboot"
   [Hibernate]="systemctl hibernate"
   [Suspend]="systemctl suspend"
   [Halt]="systemctl halt"
-  [Lock]="${LOCKSCRIPT:-i3lock --color=${BG_COLOR#"#"}}"
-  [Logout]="i3-msg exit"
+  [Lock]="loginctl lock-session ${LOGINCTL_SESSION_ID}"
+  [Logout]="loginctl terminate-session ${LOGINCTL_SESSION_ID}"
   [Cancel]=""
 )
 menu_nrows=${#menu[@]}
